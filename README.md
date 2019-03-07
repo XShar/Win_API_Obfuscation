@@ -54,7 +54,6 @@ HANDLE hash_CreateFileA(
 	__in    DWORD     flags,
 	__in HANDLE    template_file) {
 
-	Хешируем "CreateFile" 
 	unsigned int create_file_hash = MurmurHash2A("CreateFile", 10, 10);
 
 	temp_CreateFile = (HANDLE(WINAPI *)(LPCSTR,
