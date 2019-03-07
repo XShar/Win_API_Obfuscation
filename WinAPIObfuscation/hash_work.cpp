@@ -1,4 +1,4 @@
-#include "pch.h"
+п»ї#include "pch.h"
 #include "MurmurHash2A.h"
 #include "PointerHashFunc.h"
 #include "export_work.h"
@@ -12,7 +12,7 @@ HANDLE hash_CreateFileA(
 	__in    DWORD     flags,
 	__in HANDLE    template_file) {
 
-	//Хешируем "CreateFile" 
+	//РҐРµС€РёСЂСѓРµРј "CreateFile" 
 	unsigned int create_file_hash = MurmurHash2A("CreateFile", 10, 10);
 
 	temp_CreateFile = (HANDLE(WINAPI *)(LPCSTR,

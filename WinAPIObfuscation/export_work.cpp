@@ -1,10 +1,10 @@
-#include "pch.h"
+п»ї#include "pch.h"
 #include "MurmurHash2A.h"
 #include "hash_work.h"
 #include "export_work.h"
 
 /*
-Для запуска функции LoadLibraryA из хеша, её выносить в модуль hash_work нестал, т.к. это нужно в этом модуле
+Р”Р»СЏ Р·Р°РїСѓСЃРєР° С„СѓРЅРєС†РёРё LoadLibraryA РёР· С…РµС€Р°, РµС‘ РІС‹РЅРѕСЃРёС‚СЊ РІ РјРѕРґСѓР»СЊ hash_work РЅРµСЃС‚Р°Р», С‚.Рє. СЌС‚Рѕ РЅСѓР¶РЅРѕ РІ СЌС‚РѕРј РјРѕРґСѓР»Рµ
 */
 
 static HMODULE (WINAPI *temp_LoadLibraryA)(__in LPCSTR file_name) = NULL;
@@ -67,7 +67,7 @@ LPVOID get_api(DWORD api_hash, LPCSTR module, int len, unsigned int seed) {
 	INT_PTR peb = __readfsdword(0x30);
 #endif
 
-	// Теперь получим адрес kernel32.dll
+	// РўРµРїРµСЂСЊ РїРѕР»СѓС‡РёРј Р°РґСЂРµСЃ kernel32.dll
 
 	INT_PTR mdllist = *(INT_PTR*)(peb + ModuleList);
 	INT_PTR mlink = *(INT_PTR*)(mdllist + ModuleListFlink);
@@ -80,7 +80,7 @@ LPVOID get_api(DWORD api_hash, LPCSTR module, int len, unsigned int seed) {
 
 		if (mdl->base != NULL)
 		{
-			if (!lstrcmpiW(mdl->dllname.Buffer, L"kernel32.dll")) //сравниваем имя библиотеки в буфере с необходимым
+			if (!lstrcmpiW(mdl->dllname.Buffer, L"kernel32.dll")) //СЃСЂР°РІРЅРёРІР°РµРј РёРјСЏ Р±РёР±Р»РёРѕС‚РµРєРё РІ Р±СѓС„РµСЂРµ СЃ РЅРµРѕР±С…РѕРґРёРјС‹Рј
 			{
 				break;
 			}
@@ -89,7 +89,7 @@ LPVOID get_api(DWORD api_hash, LPCSTR module, int len, unsigned int seed) {
 
 	krnl32 = (HMODULE)mdl->base;
 
-	//Получаем адрес функции LoadLibraryA 
+	//РџРѕР»СѓС‡Р°РµРј Р°РґСЂРµСЃ С„СѓРЅРєС†РёРё LoadLibraryA 
 	int api_hash_LoadLibraryA = MurmurHash2A("LoadLibraryA", 12, 10);
 	temp_LoadLibraryA = (HMODULE(WINAPI *)(LPCSTR))parse_export_table(krnl32, api_hash_LoadLibraryA, 12, 10);
 	hDll = hash_LoadLibraryA(module);

@@ -1,4 +1,4 @@
-#include "pch.h"
+﻿#include "pch.h"
 #include "MurmurHash2A.h"
 #define mmix(h,k) { k *= m; k ^= k >> r; k *= m; h *= m; h ^= k; }
 unsigned int MurmurHash2A(const void * key, int len, unsigned int seed)
