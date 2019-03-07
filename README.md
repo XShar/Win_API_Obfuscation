@@ -54,7 +54,7 @@ HANDLE hash_CreateFileA(
 	__in    DWORD     flags,
 	__in HANDLE    template_file) {
 
-	//Хешируем "CreateFile" 
+	Хешируем "CreateFile" 
 	unsigned int create_file_hash = MurmurHash2A("CreateFile", 10, 10);
 
 	temp_CreateFile = (HANDLE(WINAPI *)(LPCSTR,
@@ -75,7 +75,7 @@ HANDLE hash_CreateFileA(
 Воторой параметр, это длина строки.
 Третий параметр, это начальное значение (Что-бы хеши разные были например).
   
--temp_CreateFile = (HANDLE(WINAPI *)(LPCSTR,
+- temp_CreateFile = (HANDLE(WINAPI *)(LPCSTR,
 		DWORD,
 		DWORD,
 		LPSECURITY_ATTRIBUTES,
@@ -86,10 +86,10 @@ HANDLE hash_CreateFileA(
 Получаем адрес скрываемой функции при помощи интерфейсной функции get_api(create_file_hash, "Kernel32.dll", 10, 10).
 
 Описание параметров:
--create_file_hash - Полученный выше хеш.
--"Kernel32.dll" - Модуль, где экспортируется функция.
--Второй параметр, это длина строки (Значение те-же, что и при получении create_file_hash).
--Третий параметр, это начальное значение (Значение те-же, что и при получении create_file_hash).
+- create_file_hash - Полученный выше хеш.
+- "Kernel32.dll" - Модуль, где экспортируется функция.
+- Второй параметр, это длина строки (Значение те-же, что и при получении create_file_hash).
+- Третий параметр, это начальное значение (Значение те-же, что и при получении create_file_hash).
 
 Далее передаём управление по адресу (С параметрами, как в прототипе):
 return temp_CreateFile(file_name, access, share_mode, security, creation_disposition, flags, template_file)
