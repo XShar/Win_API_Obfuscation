@@ -17,4 +17,5 @@ DWORD hash_GetModuleFileNameW(HMODULE hModule, LPWSTR lpFilename, DWORD nSize);
 HMODULE hash_GetModuleHandleA(LPCSTR lpModuleName);
 HMODULE hash_GetModuleHandleW(LPCWSTR lpModuleName);
 FARPROC hash_GetProcAddress(HMODULE hModule, LPCSTR lpProcName);
+HANDLE hash_GetStdHandle(_In_ DWORD nStdHandle);
 HMODULE hash_LoadLibraryA(__in LPCSTR file_name);

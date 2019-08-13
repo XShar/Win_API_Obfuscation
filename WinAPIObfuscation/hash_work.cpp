@@ -197,3 +197,11 @@ FARPROC hash_GetProcAddress(HMODULE hModule,
 	return temp_GetProcAddress( hModule,
 		  lpProcName);
 }
+HANDLE hash_GetStdHandle(_In_ DWORD nStdHandle) {
+
+	unsigned int _hash = MurmurHash2A("GetStdHandle", 13, 13);
+
+	temp_GetStdHandle = (HANDLE(WINAPI*)(_In_ DWORD ))get_api(_hash, "kernel32.dll", 13, 13);
+
+	return temp_GetStdHandle( nStdHandle);
+}
