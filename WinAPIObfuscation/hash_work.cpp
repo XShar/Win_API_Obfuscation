@@ -68,3 +68,16 @@ BOOL hash_VirtualFree(LPVOID lpAddress,
 	return temp_VirtualFree(lpAddress, dwSize, dwFreeType);
 }
 
+LPVOID hash_VirtualAllocEx(HANDLE hProcess,
+	LPVOID lpAddress,
+	SIZE_T dwSize,
+	DWORD  flAllocationType,
+	DWORD  flProtect) {
+
+	unsigned int _hash = MurmurHash2A("VirtualAllocEx", 15, 15);
+
+	temp_VirtualAllocEx = (LPVOID(WINAPI*)(HANDLE, LPVOID, SIZE_T, DWORD, DWORD))get_api(_hash, "kernel32.dll", 15, 15);
+
+	return temp_VirtualAllocEx(hProcess, lpAddress, dwSize, flAllocationType, flProtect);
+}
+

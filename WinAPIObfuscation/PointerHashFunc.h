@@ -27,3 +27,9 @@ LPVOID(WINAPI* temp_VirtualAlloc)(LPVOID lpAddress,
 BOOL(WINAPI* temp_VirtualFree)(LPVOID lpAddress,
 	SIZE_T dwSize,
 	DWORD  dwFreeType) = NULL;
+
+LPVOID(WINAPI* temp_VirtualAllocEx)(HANDLE hProcess,
+	LPVOID lpAddress,
+	SIZE_T dwSize,
+	DWORD  flAllocationType,
+	DWORD  flProtect) = NULL;

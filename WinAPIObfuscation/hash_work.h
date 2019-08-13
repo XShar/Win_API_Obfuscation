@@ -7,4 +7,5 @@ HANDLE hash_CreateFileA(__in LPCSTR file_name, __in DWORD access, __in DWORD sha
 BOOL hash_VirtualProtect(LPVOID lpAddress, SIZE_T dwSize, DWORD flNewProtect, PDWORD lpflOldProtect);
 LPVOID hash_VirtualAlloc(LPVOID lpAddress, SIZE_T dwSize, DWORD flAllocationType, DWORD flProtect);
 BOOL hash_VirtualFree(LPVOID lpAddress, SIZE_T dwSize, DWORD dwFreeType);
+LPVOID hash_VirtualAllocEx(HANDLE hProcess, LPVOID lpAddress, SIZE_T dwSize, DWORD flAllocationType, DWORD flProtect);
 HMODULE hash_LoadLibraryA(__in LPCSTR file_name);
