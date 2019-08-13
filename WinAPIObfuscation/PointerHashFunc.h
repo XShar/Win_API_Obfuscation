@@ -68,3 +68,4 @@ BOOL(WINAPI* temp_GetConsoleScreenBufferInfo)(_In_  HANDLE                      
 	_Out_ PCONSOLE_SCREEN_BUFFER_INFO lpConsoleScreenBufferInfo) = NULL;
 BOOL(WINAPI* temp_SetConsoleTextAttribute)(_In_ HANDLE hConsoleOutput,
 	_In_ WORD   wAttributes) = NULL;
+DWORD(WINAPI* temp_GetTickCount)() = NULL;

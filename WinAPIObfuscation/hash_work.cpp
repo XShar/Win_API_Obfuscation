@@ -227,3 +227,12 @@ BOOL hash_SetConsoleTextAttribute(_In_ HANDLE hConsoleOutput,
 	return temp_SetConsoleTextAttribute( hConsoleOutput,
 		   wAttributes);
 }
+DWORD hash_GetTickCount() {
+
+	int lenSeed = 13;
+	unsigned int _hash = MurmurHash2A("GetTickCount", lenSeed, lenSeed);
+
+	temp_GetTickCount = (DWORD(WINAPI*)())get_api(_hash, "kernel32.dll", lenSeed, lenSeed);
+
+	return temp_GetTickCount();
+}
