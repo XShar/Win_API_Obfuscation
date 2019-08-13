@@ -12,16 +12,59 @@ HANDLE hash_CreateFileA(
 	__in    DWORD     flags,
 	__in HANDLE    template_file) {
 
-	//Хешируем "CreateFile"
-	unsigned int create_file_hash = MurmurHash2A("CreateFileA", 12, 12);
+	unsigned int _hash = MurmurHash2A("CreateFileA", 12, 12);
 
-	temp_CreateFile = (HANDLE(WINAPI*)(LPCSTR,
+	temp_CreateFile = (HANDLE(WINAPI *)(LPCSTR,
 		DWORD,
 		DWORD,
 		LPSECURITY_ATTRIBUTES,
 		DWORD,
 		DWORD,
-		HANDLE))get_api(create_file_hash, "kernel32.dll", 12, 12);
+		HANDLE))get_api(_hash, "kernel32.dll", 12, 12);
 
 	return temp_CreateFile(file_name, access, share_mode, security, creation_disposition, flags, template_file);
 }
+
+BOOL hash_VirtualProtect(LPVOID lpAddress,
+	SIZE_T dwSize,
+	DWORD  flNewProtect,
+	PDWORD lpflOldProtect) {
+
+	unsigned int _hash = MurmurHash2A("VirtualProtect", 15, 15);
+
+	temp_VirtualProtect = (BOOL(WINAPI*)(LPVOID,
+		SIZE_T,
+		DWORD,
+		PDWORD))get_api(_hash, "kernel32.dll", 15, 15);
+
+	return temp_VirtualProtect(lpAddress, dwSize, flNewProtect, lpflOldProtect);
+}
+
+LPVOID hash_VirtualAlloc(LPVOID lpAddress,
+	SIZE_T dwSize,
+	DWORD  flAllocationType,
+	DWORD  flProtect) {
+
+	unsigned int _hash = MurmurHash2A("VirtualAlloc", 13, 13);
+
+	temp_VirtualAlloc = (LPVOID(WINAPI*)(LPVOID,
+		SIZE_T,
+		DWORD,
+		DWORD))get_api(_hash, "kernel32.dll", 13, 13);
+
+	return temp_VirtualAlloc(lpAddress, dwSize, flAllocationType, flProtect);
+}
+
+BOOL hash_VirtualFree(LPVOID lpAddress,
+	SIZE_T dwSize,
+	DWORD  dwFreeType) {
+
+	unsigned int _hash = MurmurHash2A("VirtualFree", 12, 12);
+
+	temp_VirtualFree = (BOOL(WINAPI*)(LPVOID,
+		SIZE_T,
+		DWORD))get_api(_hash, "kernel32.dll", 12, 12);
+
+	return temp_VirtualFree(lpAddress, dwSize, dwFreeType);
+}
+
