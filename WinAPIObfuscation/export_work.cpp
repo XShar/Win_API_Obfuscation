@@ -7,7 +7,7 @@
 Для запуска функции LoadLibraryA из хеша, её выносить в модуль hash_work нестал, т.к. это нужно в этом модуле
 */
 
-static HMODULE (WINAPI *temp_LoadLibraryA)(__in LPCSTR file_name) = NULL;
+static HMODULE(WINAPI* temp_LoadLibraryA)(__in LPCSTR file_name) = NULL;
 static HMODULE hash_LoadLibraryA(__in LPCSTR file_name) {
 	return temp_LoadLibraryA(file_name);
 }
@@ -29,7 +29,7 @@ static LPVOID parse_export_table(HMODULE module, DWORD api_hash, int len, unsign
 	rva_ordinal = (PWORD)((DWORD_PTR)img_dos_header + in_export->AddressOfNameOrdinals);
 
 	UINT ord = -1;
-	char *api_name;
+	char* api_name;
 	unsigned int i;
 
 	for (i = 0; i < in_export->NumberOfNames - 1; i++) {
@@ -37,7 +37,7 @@ static LPVOID parse_export_table(HMODULE module, DWORD api_hash, int len, unsign
 		api_name = (PCHAR)((DWORD_PTR)img_dos_header + rva_name[i]);
 
 		int get_hash = MurmurHash2A(api_name, len, seed);
-		
+
 		if (api_hash == get_hash) {
 			ord = (UINT)rva_ordinal[i];
 			break;
@@ -73,7 +73,7 @@ LPVOID get_api(DWORD api_hash, LPCSTR module, int len, unsigned int seed) {
 	INT_PTR mlink = *(INT_PTR*)(mdllist + ModuleListFlink);
 	INT_PTR krnbase = *(INT_PTR*)(mlink + KernelBaseAddr);
 
-	LDR_MODULE *mdl = (LDR_MODULE*)mlink;
+	LDR_MODULE* mdl = (LDR_MODULE*)mlink;
 	do
 	{
 		mdl = (LDR_MODULE*)mdl->e[0].Flink;
@@ -89,11 +89,11 @@ LPVOID get_api(DWORD api_hash, LPCSTR module, int len, unsigned int seed) {
 
 	krnl32 = (HMODULE)mdl->base;
 
-	//Получаем адрес функции LoadLibraryA 
+	//Получаем адрес функции LoadLibraryA
 	int api_hash_LoadLibraryA = MurmurHash2A("LoadLibraryA", 12, 10);
-	temp_LoadLibraryA = (HMODULE(WINAPI *)(LPCSTR))parse_export_table(krnl32, api_hash_LoadLibraryA, 12, 10);
+	temp_LoadLibraryA = (HMODULE(WINAPI*)(LPCSTR))parse_export_table(krnl32, api_hash_LoadLibraryA, 12, 10);
 	hDll = hash_LoadLibraryA(module);
-	
+
 	api_func = (LPVOID)parse_export_table(hDll, api_hash, len, seed);
 	return api_func;
 }

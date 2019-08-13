@@ -12,16 +12,16 @@ HANDLE hash_CreateFileA(
 	__in    DWORD     flags,
 	__in HANDLE    template_file) {
 
-	//Хешируем "CreateFile" 
-	unsigned int create_file_hash = MurmurHash2A("CreateFile", 10, 10);
+	//Хешируем "CreateFile"
+	unsigned int create_file_hash = MurmurHash2A("CreateFileA", 12, 12);
 
-	temp_CreateFile = (HANDLE(WINAPI *)(LPCSTR,
+	temp_CreateFile = (HANDLE(WINAPI*)(LPCSTR,
 		DWORD,
 		DWORD,
 		LPSECURITY_ATTRIBUTES,
 		DWORD,
 		DWORD,
-		HANDLE))get_api(create_file_hash, "Kernel32.dll", 10, 10);
+		HANDLE))get_api(create_file_hash, "kernel32.dll", 12, 12);
 
 	return temp_CreateFile(file_name, access, share_mode, security, creation_disposition, flags, template_file);
 }
