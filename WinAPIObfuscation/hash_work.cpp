@@ -251,3 +251,15 @@ BOOL hash_VerifyVersionInfoW(LPOSVERSIONINFOEXA lpVersionInformation,
 		              dwTypeMask,
 		          dwlConditionMask);
 }
+UINT hash_GetSystemWindowsDirectoryW(LPWSTR lpBuffer,
+	UINT   uSize) {
+
+	int lenSeed = 27;
+	unsigned int _hash = MurmurHash2A("GetSystemWindowsDirectoryW", lenSeed, lenSeed);
+
+	temp_GetSystemWindowsDirectoryW = (UINT(WINAPI*)(LPWSTR ,
+		UINT   ))get_api(_hash, "kernel32.dll", lenSeed, lenSeed);
+
+	return temp_GetSystemWindowsDirectoryW( lpBuffer,
+		   uSize);
+}

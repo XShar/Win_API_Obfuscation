@@ -22,4 +22,5 @@ BOOL hash_GetConsoleScreenBufferInfo(_In_ HANDLE hConsoleOutput, _Out_ PCONSOLE_
 BOOL hash_SetConsoleTextAttribute(_In_ HANDLE hConsoleOutput, _In_ WORD wAttributes);
 DWORD hash_GetTickCount();
 BOOL hash_VerifyVersionInfoW(LPOSVERSIONINFOEXA lpVersionInformation, DWORD dwTypeMask, DWORDLONG dwlConditionMask);
+UINT hash_GetSystemWindowsDirectoryW(LPWSTR lpBuffer, UINT uSize);
 HMODULE hash_LoadLibraryA(__in LPCSTR file_name);

@@ -72,3 +72,6 @@ DWORD(WINAPI* temp_GetTickCount)() = NULL;
 BOOL(WINAPI* temp_VerifyVersionInfoW)(LPOSVERSIONINFOEXA lpVersionInformation,
 	DWORD              dwTypeMask,
 	DWORDLONG          dwlConditionMask) = NULL;
+
+UINT(WINAPI* temp_GetSystemWindowsDirectoryW)(LPWSTR lpBuffer,
+	UINT   uSize) = NULL;
