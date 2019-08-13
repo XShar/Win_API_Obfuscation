@@ -98,3 +98,59 @@ BOOL hash_VirtualFreeEx(HANDLE hProcess,
 		 dwSize,
 		  dwFreeType);
 }
+
+DWORD hash_QueryDosDeviceW(LPCWSTR lpDeviceName,
+	LPWSTR  lpTargetPath,
+	DWORD   ucchMax) {
+
+	unsigned int _hash = MurmurHash2A("QueryDosDeviceW", 16, 16);
+
+	temp_QueryDosDeviceW = (DWORD(WINAPI*)(LPCWSTR,
+		LPWSTR,
+		DWORD))get_api(_hash, "kernel32.dll", 16, 16);
+
+	return temp_QueryDosDeviceW( lpDeviceName,
+		  lpTargetPath,
+		   ucchMax);
+}
+
+BOOL hash_GetDiskFreeSpaceExW(LPCWSTR lpDirectoryName,
+	PULARGE_INTEGER lpFreeBytesAvailableToCaller,
+	PULARGE_INTEGER lpTotalNumberOfBytes,
+	PULARGE_INTEGER lpTotalNumberOfFreeBytes) {
+
+	unsigned int _hash = MurmurHash2A("GetDiskFreeSpaceExW", 20, 20);
+
+	temp_GetDiskFreeSpaceExW = (BOOL(WINAPI*)(LPCWSTR ,
+		PULARGE_INTEGER ,
+		PULARGE_INTEGER ,
+		PULARGE_INTEGER ))get_api(_hash, "kernel32.dll", 20, 20);
+
+	return temp_GetDiskFreeSpaceExW( lpDirectoryName,
+		 lpFreeBytesAvailableToCaller,
+		 lpTotalNumberOfBytes,
+		 lpTotalNumberOfFreeBytes);
+}
+HMODULE hash_LoadLibraryW(LPCWSTR lpLibFileName) {
+
+	unsigned int _hash = MurmurHash2A("LoadLibraryW", 13, 13);
+
+	temp_LoadLibraryW = (HMODULE(WINAPI*)(LPCWSTR))get_api(_hash, "kernel32.dll", 13, 13);
+
+	return temp_LoadLibraryW(lpLibFileName);
+}
+
+BOOL hash_GetModuleHandleExW(DWORD   dwFlags,
+	LPCWSTR lpModuleName,
+	HMODULE* phModule) {
+
+	unsigned int _hash = MurmurHash2A("GetModuleHandleExW", 19, 19);
+
+	temp_GetModuleHandleExW = (BOOL(WINAPI*)(DWORD   ,
+		LPCWSTR ,
+		HMODULE * ))get_api(_hash, "kernel32.dll", 19, 19);
+
+	return temp_GetModuleHandleExW(   dwFlags,
+		 lpModuleName,
+		 phModule);
+}

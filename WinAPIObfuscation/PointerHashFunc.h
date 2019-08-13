@@ -38,3 +38,18 @@ BOOL(WINAPI* temp_VirtualFreeEx)(HANDLE hProcess,
 	LPVOID lpAddress,
 	SIZE_T dwSize,
 	DWORD  dwFreeType) = NULL;
+
+
+DWORD(WINAPI* temp_QueryDosDeviceW)(LPCWSTR lpDeviceName,
+	LPWSTR  lpTargetPath,
+	DWORD   ucchMax) = NULL;
+
+BOOL(WINAPI* temp_GetDiskFreeSpaceExW)(LPCWSTR lpDirectoryName,
+	PULARGE_INTEGER lpFreeBytesAvailableToCaller,
+	PULARGE_INTEGER lpTotalNumberOfBytes,
+	PULARGE_INTEGER lpTotalNumberOfFreeBytes) = NULL;
+
+HMODULE(WINAPI* temp_LoadLibraryW)(LPCWSTR lpLibFileName) = NULL;
+BOOL(WINAPI* temp_GetModuleHandleExW)(DWORD   dwFlags,
+	LPCWSTR lpModuleName,
+	HMODULE* phModule) = NULL;

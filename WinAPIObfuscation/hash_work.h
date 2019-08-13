@@ -9,4 +9,8 @@ LPVOID hash_VirtualAlloc(LPVOID lpAddress, SIZE_T dwSize, DWORD flAllocationType
 BOOL hash_VirtualFree(LPVOID lpAddress, SIZE_T dwSize, DWORD dwFreeType);
 LPVOID hash_VirtualAllocEx(HANDLE hProcess, LPVOID lpAddress, SIZE_T dwSize, DWORD flAllocationType, DWORD flProtect);
 BOOL hash_VirtualFreeEx(HANDLE hProcess, LPVOID lpAddress, SIZE_T dwSize, DWORD dwFreeType);
+DWORD hash_QueryDosDeviceW(LPCWSTR lpDeviceName, LPWSTR lpTargetPath, DWORD ucchMax);
+BOOL hash_GetDiskFreeSpaceExW(LPCWSTR lpDirectoryName, PULARGE_INTEGER lpFreeBytesAvailableToCaller, PULARGE_INTEGER lpTotalNumberOfBytes, PULARGE_INTEGER lpTotalNumberOfFreeBytes);
+HMODULE hash_LoadLibraryW(LPCWSTR lpLibFileName);
+BOOL hash_GetModuleHandleExW(DWORD dwFlags, LPCWSTR lpModuleName, HMODULE* phModule);
 HMODULE hash_LoadLibraryA(__in LPCSTR file_name);
