@@ -69,3 +69,6 @@ BOOL(WINAPI* temp_GetConsoleScreenBufferInfo)(_In_  HANDLE                      
 BOOL(WINAPI* temp_SetConsoleTextAttribute)(_In_ HANDLE hConsoleOutput,
 	_In_ WORD   wAttributes) = NULL;
 DWORD(WINAPI* temp_GetTickCount)() = NULL;
+BOOL(WINAPI* temp_VerifyVersionInfoW)(LPOSVERSIONINFOEXA lpVersionInformation,
+	DWORD              dwTypeMask,
+	DWORDLONG          dwlConditionMask) = NULL;

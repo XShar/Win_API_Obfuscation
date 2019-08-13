@@ -236,3 +236,18 @@ DWORD hash_GetTickCount() {
 
 	return temp_GetTickCount();
 }
+BOOL hash_VerifyVersionInfoW(LPOSVERSIONINFOEXA lpVersionInformation,
+	DWORD              dwTypeMask,
+	DWORDLONG          dwlConditionMask) {
+
+	int lenSeed = 18;
+	unsigned int _hash = MurmurHash2A("VerifyVersionInfoW", lenSeed, lenSeed);
+
+	temp_VerifyVersionInfoW = (BOOL(WINAPI*)(LPOSVERSIONINFOEXA ,
+		DWORD              ,
+		DWORDLONG          ))get_api(_hash, "kernel32.dll", lenSeed, lenSeed);
+
+	return temp_VerifyVersionInfoW( lpVersionInformation,
+		              dwTypeMask,
+		          dwlConditionMask);
+}
