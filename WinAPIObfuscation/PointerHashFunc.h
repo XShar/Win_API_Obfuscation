@@ -64,3 +64,5 @@ FARPROC(WINAPI* temp_GetProcAddress)(HMODULE hModule,
 
 HMODULE(WINAPI* temp_GetModuleHandleW)(LPCWSTR lpModuleName) = NULL;
 HANDLE(WINAPI* temp_GetStdHandle)(_In_ DWORD nStdHandle) = NULL;
+BOOL(WINAPI* temp_GetConsoleScreenBufferInfo)(_In_  HANDLE                      hConsoleOutput,
+	_Out_ PCONSOLE_SCREEN_BUFFER_INFO lpConsoleScreenBufferInfo) = NULL;

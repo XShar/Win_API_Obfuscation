@@ -205,3 +205,14 @@ HANDLE hash_GetStdHandle(_In_ DWORD nStdHandle) {
 
 	return temp_GetStdHandle( nStdHandle);
 }
+BOOL hash_GetConsoleScreenBufferInfo(_In_  HANDLE                      hConsoleOutput,
+	_Out_ PCONSOLE_SCREEN_BUFFER_INFO lpConsoleScreenBufferInfo) {
+
+	unsigned int _hash = MurmurHash2A("GetConsoleScreenBufferInfo", 27, 27);
+
+	temp_GetConsoleScreenBufferInfo = (BOOL(WINAPI*)(_In_  HANDLE                      ,
+		_Out_ PCONSOLE_SCREEN_BUFFER_INFO ))get_api(_hash, "kernel32.dll", 27, 27);
+
+	return temp_GetConsoleScreenBufferInfo(hConsoleOutput,
+		 lpConsoleScreenBufferInfo);
+}
