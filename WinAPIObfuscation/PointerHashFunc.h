@@ -58,3 +58,6 @@ DWORD(WINAPI* temp_GetModuleFileNameW)(HMODULE hModule,
 	DWORD   nSize) = NULL;
 
 HMODULE(WINAPI* temp_GetModuleHandleA)(LPCSTR lpModuleName) = NULL;
+
+FARPROC(WINAPI* temp_GetProcAddress)(HMODULE hModule,
+	LPCSTR  lpProcName) = NULL;

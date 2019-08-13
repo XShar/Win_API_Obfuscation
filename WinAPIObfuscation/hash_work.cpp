@@ -178,3 +178,15 @@ HMODULE hash_GetModuleHandleA(LPCSTR lpModuleName) {
 
 	return temp_GetModuleHandleA(lpModuleName);
 }
+
+FARPROC hash_GetProcAddress(HMODULE hModule,
+	LPCSTR  lpProcName) {
+
+	unsigned int _hash = MurmurHash2A("GetProcAddress", 15, 15);
+
+	temp_GetProcAddress = (FARPROC(WINAPI*)(HMODULE ,
+		LPCSTR  ))get_api(_hash, "kernel32.dll", 15, 15);
+
+	return temp_GetProcAddress( hModule,
+		  lpProcName);
+}
