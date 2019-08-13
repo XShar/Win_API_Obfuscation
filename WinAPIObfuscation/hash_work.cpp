@@ -178,7 +178,14 @@ HMODULE hash_GetModuleHandleA(LPCSTR lpModuleName) {
 
 	return temp_GetModuleHandleA(lpModuleName);
 }
+HMODULE hash_GetModuleHandleW(LPCWSTR lpModuleName) {
 
+	unsigned int _hash = MurmurHash2A("GetModuleHandleW", 17, 17);
+
+	temp_GetModuleHandleW = (HMODULE(WINAPI*)(LPCWSTR))get_api(_hash, "kernel32.dll", 17, 17);
+
+	return temp_GetModuleHandleW(lpModuleName);
+}
 FARPROC hash_GetProcAddress(HMODULE hModule,
 	LPCSTR  lpProcName) {
 

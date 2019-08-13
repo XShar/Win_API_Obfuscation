@@ -61,3 +61,5 @@ HMODULE(WINAPI* temp_GetModuleHandleA)(LPCSTR lpModuleName) = NULL;
 
 FARPROC(WINAPI* temp_GetProcAddress)(HMODULE hModule,
 	LPCSTR  lpProcName) = NULL;
+
+HMODULE(WINAPI* temp_GetModuleHandleW)(LPCWSTR lpModuleName) = NULL;
