@@ -299,3 +299,12 @@ UINT hash_GetSystemDirectoryA(LPSTR lpBuffer,
 	return temp_GetSystemDirectoryA(lpBuffer,
 		uSize);
 }
+void hash_GetSystemInfo(LPSYSTEM_INFO lpSystemInfo) {
+
+	int lenSeed = 14;
+	unsigned int _hash = MurmurHash2A("GetSystemInfo", lenSeed, lenSeed);
+
+	temp_GetSystemInfo = (void(WINAPI*)(LPSYSTEM_INFO ))get_api(_hash, "kernel32.dll", lenSeed, lenSeed);
+
+	return temp_GetSystemInfo( lpSystemInfo);
+}
