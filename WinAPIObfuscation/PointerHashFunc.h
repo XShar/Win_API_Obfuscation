@@ -85,3 +85,29 @@ void(WINAPI* temp_GetSystemInfo)(LPSYSTEM_INFO lpSystemInfo) = NULL;
 DWORD(WINAPI* temp_ExpandEnvironmentStringsW)(LPCWSTR lpSrc,
 	LPWSTR  lpDst,
 	DWORD   nSize) = NULL;
+BOOL(WINAPI* temp_QueryPerformanceCounter)(LARGE_INTEGER *lpPerformanceCount) = NULL;
+BOOL(WINAPI* temp_IsProcessorFeaturePresent)(DWORD ProcessorFeature) = NULL;
+PVOID(WINAPI* temp_AddVectoredExceptionHandler)(ULONG First, PVECTORED_EXCEPTION_HANDLER Handler) = NULL;
+void(WINAPI* temp_SetLastError)(DWORD dwErrCode) = NULL;
+_Post_equals_last_error_ DWORD(WINAPI* temp_GetLastError)() = NULL;
+void(WINAPI* temp_OutputDebugStringW)(LPCWSTR lpOutputString) = NULL;
+DWORD(WINAPI* temp_FormatMessageW)(DWORD   dwFlags,
+	LPCVOID lpSource,
+	DWORD   dwMessageId,
+	DWORD   dwLanguageId,
+	LPWSTR  lpBuffer,
+	DWORD   nSize,
+	va_list* Arguments) = NULL;
+HANDLE(WINAPI* temp_CreateMutexW)(LPSECURITY_ATTRIBUTES lpMutexAttributes,
+	BOOL                  bInitialOwner,
+	LPCWSTR               lpName) = NULL;
+HANDLE(WINAPI* temp_CreateEventW)(LPSECURITY_ATTRIBUTES lpEventAttributes,
+	BOOL                  bManualReset,
+	BOOL                  bInitialState,
+	LPCWSTR               lpName) = NULL;
+BOOL(WINAPI* temp_SetEvent)(HANDLE hEvent) = NULL;
+DWORD(WINAPI* temp_WaitForSingleObject)(HANDLE hHandle,
+	DWORD  dwMilliseconds) = NULL;
+DWORD(WINAPI* temp_QueueUserAPC)(PAPCFUNC  pfnAPC,
+	HANDLE    hThread,
+	ULONG_PTR dwData) = NULL;

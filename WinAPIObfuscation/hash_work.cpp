@@ -2,6 +2,8 @@
 #include "MurmurHash2A.h"
 #include "PointerHashFunc.h"
 #include "export_work.h"
+#include "Windows.h"
+#include "errhandlingapi.h"
 
 HANDLE hash_CreateFileA(
 	__in    LPCSTR      file_name,
@@ -299,6 +301,7 @@ UINT hash_GetSystemDirectoryA(LPSTR lpBuffer,
 	return temp_GetSystemDirectoryA(lpBuffer,
 		uSize);
 }
+
 void hash_GetSystemInfo(LPSYSTEM_INFO lpSystemInfo) {
 
 	int lenSeed = 14;
@@ -308,6 +311,7 @@ void hash_GetSystemInfo(LPSYSTEM_INFO lpSystemInfo) {
 
 	return temp_GetSystemInfo( lpSystemInfo);
 }
+
 DWORD hash_ExpandEnvironmentStringsW(LPCWSTR lpSrc,
 	LPWSTR  lpDst,
 	DWORD   nSize) {
@@ -322,4 +326,154 @@ DWORD hash_ExpandEnvironmentStringsW(LPCWSTR lpSrc,
 	return temp_ExpandEnvironmentStringsW( lpSrc,
 		  lpDst,
 		   nSize);
+}
+
+BOOL hash_QueryPerformanceCounter(LARGE_INTEGER *lpPerformanceCount) {
+
+	int lenSeed = 24;
+	unsigned int _hash = MurmurHash2A("QueryPerformanceCounter", lenSeed, lenSeed);
+
+	temp_QueryPerformanceCounter = (BOOL(WINAPI*)(LARGE_INTEGER *))get_api(_hash, "kernel32.dll", lenSeed, lenSeed);
+
+	return temp_QueryPerformanceCounter(lpPerformanceCount);
+}
+BOOL hash_IsProcessorFeaturePresent(DWORD ProcessorFeature) {
+
+	int lenSeed = 26;
+	unsigned int _hash = MurmurHash2A("IsProcessorFeaturePresent", lenSeed, lenSeed);
+
+	temp_IsProcessorFeaturePresent = (BOOL(WINAPI*)(DWORD ))get_api(_hash, "kernel32.dll", lenSeed, lenSeed);
+
+	return temp_IsProcessorFeaturePresent( ProcessorFeature);
+}
+PVOID hash_AddVectoredExceptionHandler(ULONG                       First,
+	PVECTORED_EXCEPTION_HANDLER Handler) {
+
+	int lenSeed = 28;
+	unsigned int _hash = MurmurHash2A("AddVectoredExceptionHandler", lenSeed, lenSeed);
+
+	temp_AddVectoredExceptionHandler = (PVOID(WINAPI*)(ULONG, PVECTORED_EXCEPTION_HANDLER))get_api(_hash, "kernel32.dll", lenSeed, lenSeed);
+
+	return temp_AddVectoredExceptionHandler(First,Handler);
+}
+void hash_SetLastError(DWORD dwErrCode) {
+
+	int lenSeed = 13;
+	unsigned int _hash = MurmurHash2A("SetLastError", lenSeed, lenSeed);
+
+	temp_SetLastError = (void(WINAPI*)(DWORD))get_api(_hash, "kernel32.dll", lenSeed, lenSeed);
+
+	return temp_SetLastError(dwErrCode);
+}
+_Post_equals_last_error_ DWORD hash_GetLastError() {
+
+	int lenSeed = 13;
+	unsigned int _hash = MurmurHash2A("GetLastError", lenSeed, lenSeed);
+
+	temp_GetLastError = (_Post_equals_last_error_ DWORD(WINAPI*)())get_api(_hash, "kernel32.dll", lenSeed, lenSeed);
+
+	return temp_GetLastError();
+}
+void hash_OutputDebugStringW(LPCWSTR lpOutputString) {
+
+	int lenSeed = 19;
+	unsigned int _hash = MurmurHash2A("OutputDebugStringW", lenSeed, lenSeed);
+
+	temp_OutputDebugStringW = (void(WINAPI*)(LPCWSTR))get_api(_hash, "kernel32.dll", lenSeed, lenSeed);
+
+	return temp_OutputDebugStringW(lpOutputString);
+}
+DWORD hash_FormatMessageW(DWORD   dwFlags,
+	LPCVOID lpSource,
+	DWORD   dwMessageId,
+	DWORD   dwLanguageId,
+	LPWSTR  lpBuffer,
+	DWORD   nSize,
+	va_list* Arguments) {
+
+	int lenSeed = 15;
+	unsigned int _hash = MurmurHash2A("FormatMessageW", lenSeed, lenSeed);
+
+	temp_FormatMessageW = (DWORD(WINAPI*)(DWORD   ,
+		LPCVOID ,
+		DWORD   ,
+		DWORD   ,
+		LPWSTR  ,
+		DWORD   ,
+		va_list * ))get_api(_hash, "kernel32.dll", lenSeed, lenSeed);
+
+	return temp_FormatMessageW(   dwFlags,
+		 lpSource,
+		   dwMessageId,
+		   dwLanguageId,
+		  lpBuffer,
+		   nSize,
+		Arguments);
+}
+HANDLE hash_CreateMutexW(LPSECURITY_ATTRIBUTES lpMutexAttributes,
+	BOOL                  bInitialOwner,
+	LPCWSTR               lpName) {
+	int lenSeed = 13;
+	unsigned int _hash = MurmurHash2A("CreateMutexW", lenSeed, lenSeed);
+
+	temp_CreateMutexW = (HANDLE(WINAPI*)(LPSECURITY_ATTRIBUTES ,
+		BOOL                  ,
+		LPCWSTR               ))get_api(_hash, "kernel32.dll", lenSeed, lenSeed);
+
+	return temp_CreateMutexW( lpMutexAttributes,
+		                  bInitialOwner,
+		               lpName);
+}
+HANDLE hash_CreateEventW(LPSECURITY_ATTRIBUTES lpEventAttributes,
+	BOOL                  bManualReset,
+	BOOL                  bInitialState,
+	LPCWSTR               lpName) {
+	int lenSeed = 13;
+	unsigned int _hash = MurmurHash2A("CreateEventW", lenSeed, lenSeed);
+
+	temp_CreateEventW = (HANDLE(WINAPI*)(LPSECURITY_ATTRIBUTES ,
+		BOOL                  ,
+		BOOL                  ,
+		LPCWSTR               ))get_api(_hash, "kernel32.dll", lenSeed, lenSeed);
+
+	return temp_CreateEventW( lpEventAttributes,
+		                  bManualReset,
+		                  bInitialState,
+		               lpName);
+}
+BOOL hash_SetEvent(HANDLE hEvent) {
+
+	int lenSeed = 9;
+	unsigned int _hash = MurmurHash2A("SetEvent", lenSeed, lenSeed);
+
+	temp_SetEvent = (BOOL(WINAPI*)(HANDLE ))get_api(_hash, "kernel32.dll", lenSeed, lenSeed);
+
+	return temp_SetEvent(hEvent);
+}
+DWORD hash_WaitForSingleObject(HANDLE hHandle,
+	DWORD  dwMilliseconds) {
+
+	int lenSeed = 20;
+	unsigned int _hash = MurmurHash2A("WaitForSingleObject", lenSeed, lenSeed);
+
+	temp_WaitForSingleObject = (DWORD(WINAPI*)(HANDLE ,
+		DWORD  ))get_api(_hash, "kernel32.dll", lenSeed, lenSeed);
+
+	return temp_WaitForSingleObject( hHandle,
+		  dwMilliseconds);
+}
+DWORD hash_QueueUserAPC(PAPCFUNC  pfnAPC,
+	HANDLE    hThread,
+	ULONG_PTR dwData) {
+
+	int lenSeed = 13;
+	unsigned int _hash = MurmurHash2A("QueueUserAPC", lenSeed, lenSeed);
+
+	temp_QueueUserAPC = (DWORD(WINAPI*)(PAPCFUNC  ,
+		HANDLE    ,
+		ULONG_PTR ))get_api(_hash, "kernel32.dll", lenSeed, lenSeed);
+
+	return temp_QueueUserAPC(  pfnAPC,
+		    hThread,
+		 dwData);
 }

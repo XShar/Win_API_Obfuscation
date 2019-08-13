@@ -159,6 +159,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="C.h" />
     <ClInclude Include="export_work.h" />
     <ClInclude Include="hash_work.h" />
     <ClInclude Include="MurmurHash2A.h" />
