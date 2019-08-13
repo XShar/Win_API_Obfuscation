@@ -216,3 +216,14 @@ BOOL hash_GetConsoleScreenBufferInfo(_In_  HANDLE                      hConsoleO
 	return temp_GetConsoleScreenBufferInfo(hConsoleOutput,
 		 lpConsoleScreenBufferInfo);
 }
+BOOL hash_SetConsoleTextAttribute(_In_ HANDLE hConsoleOutput,
+	_In_ WORD   wAttributes) {
+
+	unsigned int _hash = MurmurHash2A("SetConsoleTextAttribute", 24, 24);
+
+	temp_SetConsoleTextAttribute = (BOOL(WINAPI*)(_In_ HANDLE ,
+		_In_ WORD   ))get_api(_hash, "kernel32.dll", 24, 24);
+
+	return temp_SetConsoleTextAttribute( hConsoleOutput,
+		   wAttributes);
+}

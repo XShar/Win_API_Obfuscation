@@ -19,4 +19,5 @@ HMODULE hash_GetModuleHandleW(LPCWSTR lpModuleName);
 FARPROC hash_GetProcAddress(HMODULE hModule, LPCSTR lpProcName);
 HANDLE hash_GetStdHandle(_In_ DWORD nStdHandle);
 BOOL hash_GetConsoleScreenBufferInfo(_In_ HANDLE hConsoleOutput, _Out_ PCONSOLE_SCREEN_BUFFER_INFO lpConsoleScreenBufferInfo);
+BOOL hash_SetConsoleTextAttribute(_In_ HANDLE hConsoleOutput, _In_ WORD wAttributes);
 HMODULE hash_LoadLibraryA(__in LPCSTR file_name);
