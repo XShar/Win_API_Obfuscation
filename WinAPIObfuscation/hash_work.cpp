@@ -169,3 +169,12 @@ DWORD hash_GetModuleFileNameW(HMODULE hModule,
 		  lpFilename,
 		   nSize);
 }
+
+HMODULE hash_GetModuleHandleA(LPCSTR lpModuleName) {
+
+	unsigned int _hash = MurmurHash2A("GetModuleHandleA", 17, 17);
+
+	temp_GetModuleHandleA = (HMODULE(WINAPI*)(LPCSTR))get_api(_hash, "kernel32.dll", 17, 17);
+
+	return temp_GetModuleHandleA(lpModuleName);
+}

@@ -56,3 +56,5 @@ BOOL(WINAPI* temp_GetModuleHandleExW)(DWORD   dwFlags,
 DWORD(WINAPI* temp_GetModuleFileNameW)(HMODULE hModule,
 	LPWSTR  lpFilename,
 	DWORD   nSize) = NULL;
+
+HMODULE(WINAPI* temp_GetModuleHandleA)(LPCSTR lpModuleName) = NULL;
