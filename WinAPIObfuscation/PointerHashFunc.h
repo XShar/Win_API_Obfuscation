@@ -53,3 +53,6 @@ HMODULE(WINAPI* temp_LoadLibraryW)(LPCWSTR lpLibFileName) = NULL;
 BOOL(WINAPI* temp_GetModuleHandleExW)(DWORD   dwFlags,
 	LPCWSTR lpModuleName,
 	HMODULE* phModule) = NULL;
+DWORD(WINAPI* temp_GetModuleFileNameW)(HMODULE hModule,
+	LPWSTR  lpFilename,
+	DWORD   nSize) = NULL;

@@ -154,3 +154,18 @@ BOOL hash_GetModuleHandleExW(DWORD   dwFlags,
 		 lpModuleName,
 		 phModule);
 }
+DWORD hash_GetModuleFileNameW(HMODULE hModule,
+	LPWSTR  lpFilename,
+	DWORD   nSize) {
+
+	int lenSeed = 19;
+	unsigned int _hash = MurmurHash2A("GetModuleFileNameW", lenSeed, lenSeed);
+
+	temp_GetModuleFileNameW = (DWORD(WINAPI*)(HMODULE ,
+		LPWSTR  ,
+		DWORD   ))get_api(_hash, "kernel32.dll", lenSeed, lenSeed);
+
+	return temp_GetModuleFileNameW( hModule,
+		  lpFilename,
+		   nSize);
+}
