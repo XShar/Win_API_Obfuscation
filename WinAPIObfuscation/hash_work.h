@@ -25,4 +25,5 @@ BOOL hash_VerifyVersionInfoW(LPOSVERSIONINFOEXA lpVersionInformation, DWORD dwTy
 UINT hash_GetSystemWindowsDirectoryW(LPWSTR lpBuffer, UINT uSize);
 UINT hash_GetWindowsDirectoryW(LPWSTR lpBuffer, UINT uSize);
 UINT hash_GetSystemDirectoryW(LPWSTR lpBuffer, UINT uSize);
+UINT hash_GetSystemDirectoryA(LPSTR lpBuffer, UINT uSize);
 HMODULE hash_LoadLibraryA(__in LPCSTR file_name);
