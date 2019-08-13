@@ -3,6 +3,7 @@
 Здесь размещаются прототипы функций, которые из хеша имени функции запустит реальныю функцию
 */
 #include <windows.h>
+#include <TlHelp32.h>
 HANDLE hash_CreateFileA(__in LPCSTR file_name, __in DWORD access, __in DWORD share_mode, __in LPSECURITY_ATTRIBUTES security, __in DWORD creation_disposition, __in DWORD flags, __in HANDLE template_file);
 BOOL hash_VirtualProtect(LPVOID lpAddress, SIZE_T dwSize, DWORD flNewProtect, PDWORD lpflOldProtect);
 LPVOID hash_VirtualAlloc(LPVOID lpAddress, SIZE_T dwSize, DWORD flAllocationType, DWORD flProtect);
@@ -51,4 +52,24 @@ HANDLE hash_CreateFileW(LPCWSTR lpFileName, DWORD dwDesiredAccess, DWORD dwShare
 DWORD hash_GetFullPathNameW(LPCWSTR lpFileName, DWORD nBufferLength, LPWSTR lpBuffer, LPWSTR* lpFilePart);
 DWORD hash_GetFileAttributesW(LPCWSTR lpFileName);
 void hash_GetSystemTimeAsFileTime(LPFILETIME lpSystemTimeAsFileTime);
+void hash_VirtualQuery(LPCVOID lpAddress, PMEMORY_BASIC_INFORMATION lpBuffer, SIZE_T dwLength);
+BOOL hash_ReadProcessQMemory(HANDLE hProcess, LPCVOID lpBaseAddress, LPVOID lpBuffer, SIZE_T nSize, SIZE_T* lpNumberOfBytesRead);
+HLOCAL hash_LocalAlloc(UINT uFlags, SIZE_T uBytes);
+HLOCAL hash_LocalFree(_Frees_ptr_opt_ HLOCAL hMem);
+BOOL hash_GlobalMemoryStatusEx(LPMEMORYSTATUSEX lpBuffer);
+BOOL hash_WriteProcessMemory(HANDLE hProcess, LPVOID lpBaseAddress, LPCVOID lpBuffer, SIZE_T nSize, SIZE_T* lpNumberOfBytesWritten);
+SIZE_T hash_LocalSize(HLOCAL hMem);
+LPVOID hash_HeapAlloc(HANDLE hHeap, DWORD dwFlags, SIZE_T dwBytes);
+HANDLE hash_GetProcessHeap();
+BOOL hash_HeapFree(HANDLE hHeap, DWORD dwFlags, _Frees_ptr_opt_ LPVOID lpMem);
+BOOL hash_IsBadReadPtr(const VOID* lp, UINT_PTR ucb);
+HANDLE hash_GetCurrentProcess();
+BOOL hash_GetThreadContext(HANDLE hThread, LPCONTEXT lpContext);
+void hash_Sleep(DWORD dwMilliseconds);
+DWORD hash_GetCurrentProcessId();
+HANDLE hash_OpenProcess(DWORD dwDesiredAccess, BOOL bInheritHandle, DWORD dwProcessId);
+DWORD hash_GetEnvironmentVariableW(LPCWSTR lpName, LPWSTR lpBuffer, DWORD nSize);
 HMODULE hash_LoadLibraryA(__in LPCSTR file_name);
+HANDLE hash_CreateToolhelp32Snapshot(DWORD dwFlags, DWORD th32ProcessID);
+BOOL hash_Module32FirstW(HANDLE hSnapshot, LPMODULEENTRY32W lpme);
+BOOL hash_Module32NextW(HANDLE hSnapshot, LPMODULEENTRY32W lpme);

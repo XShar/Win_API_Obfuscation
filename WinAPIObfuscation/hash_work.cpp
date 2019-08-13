@@ -4,6 +4,7 @@
 #include "export_work.h"
 #include "Windows.h"
 #include "errhandlingapi.h"
+#include <TlHelp32.h>
 
 HANDLE hash_CreateFileA(
 	__in    LPCSTR      file_name,
@@ -679,4 +680,254 @@ void hash_GetSystemTimeAsFileTime(LPFILETIME lpSystemTimeAsFileTime) {
 	temp_GetSystemTimeAsFileTime = (void(WINAPI*)(LPFILETIME))get_api(_hash, "kernel32.dll", lenSeed, lenSeed);
 
 	return temp_GetSystemTimeAsFileTime(lpSystemTimeAsFileTime);
+}
+
+SIZE_T hash_VirtualQuery(LPCVOID                   lpAddress,
+	PMEMORY_BASIC_INFORMATION lpBuffer,
+	SIZE_T                    dwLength) {
+
+	int lenSeed = 13;
+	unsigned int _hash = MurmurHash2A("VirtualQuery", lenSeed, lenSeed);
+
+	temp_VirtualQuery = (SIZE_T(WINAPI*)(LPCVOID                   ,
+		PMEMORY_BASIC_INFORMATION ,
+		SIZE_T                    ))get_api(_hash, "kernel32.dll", lenSeed, lenSeed);
+
+	return temp_VirtualQuery(                   lpAddress,
+		 lpBuffer,
+		                    dwLength);
+}
+
+BOOL hash_ReadProcessQMemory(HANDLE  hProcess,
+	LPCVOID lpBaseAddress,
+	LPVOID  lpBuffer,
+	SIZE_T  nSize,
+	SIZE_T* lpNumberOfBytesRead) {
+	int lenSeed = 18;
+	unsigned int _hash = MurmurHash2A("ReadProcessMemory", lenSeed, lenSeed);
+
+	temp_ReadProcessMemory = (BOOL(WINAPI*)(HANDLE ,
+		LPCVOID ,
+		LPVOID  ,
+		SIZE_T  ,
+		SIZE_T * ))get_api(_hash, "kernel32.dll", lenSeed, lenSeed);
+
+	return temp_ReadProcessMemory(  hProcess,
+		 lpBaseAddress,
+		  lpBuffer,
+		  nSize,
+		lpNumberOfBytesRead);
+}
+
+/*DECLSPEC_ALLOCATOR*/ HLOCAL hash_LocalAlloc(UINT   uFlags,
+	SIZE_T uBytes) {
+	int lenSeed = 11;
+	unsigned int _hash = MurmurHash2A("LocalAlloc", lenSeed, lenSeed);
+
+	temp_LocalAlloc = (/*DECLSPEC_ALLOCATOR*/ HLOCAL(WINAPI*)(UINT   ,
+		SIZE_T ))get_api(_hash, "kernel32.dll", lenSeed, lenSeed);
+
+	return temp_LocalAlloc(   uFlags,
+		 uBytes);
+}
+HLOCAL hash_LocalFree(_Frees_ptr_opt_ HLOCAL hMem) {
+	int lenSeed = 10;
+	unsigned int _hash = MurmurHash2A("LocalFree", lenSeed, lenSeed);
+
+	temp_LocalFree = (HLOCAL(WINAPI*)(_Frees_ptr_opt_ HLOCAL))get_api(_hash, "kernel32.dll", lenSeed, lenSeed);
+
+	return temp_LocalFree(hMem);
+}
+
+BOOL hash_GlobalMemoryStatusEx(LPMEMORYSTATUSEX lpBuffer) {
+	int lenSeed = 21;
+	unsigned int _hash = MurmurHash2A("GlobalMemoryStatusEx", lenSeed, lenSeed);
+
+	temp_GlobalMemoryStatusEx = (BOOL(WINAPI*)(LPMEMORYSTATUSEX))get_api(_hash, "kernel32.dll", lenSeed, lenSeed);
+
+	return temp_GlobalMemoryStatusEx(lpBuffer);
+}
+
+BOOL hash_WriteProcessMemory(HANDLE  hProcess,
+	LPVOID  lpBaseAddress,
+	LPCVOID lpBuffer,
+	SIZE_T  nSize,
+	SIZE_T* lpNumberOfBytesWritten) {
+	int lenSeed = 19;
+	unsigned int _hash = MurmurHash2A("WriteProcessMemory", lenSeed, lenSeed);
+
+	temp_WriteProcessMemory = (BOOL(WINAPI*)(HANDLE  ,
+		LPVOID  ,
+		LPCVOID ,
+		SIZE_T  ,
+		SIZE_T * ))get_api(_hash, "kernel32.dll", lenSeed, lenSeed);
+
+	return temp_WriteProcessMemory(  hProcess,
+		 lpBaseAddress,
+		lpBuffer,
+		 nSize,
+		lpNumberOfBytesWritten);
+}
+
+SIZE_T hash_LocalSize(HLOCAL hMem) {
+	int lenSeed = 10;
+	unsigned int _hash = MurmurHash2A("LocalSize", lenSeed, lenSeed);
+
+	temp_LocalSize = (SIZE_T(WINAPI*)(HLOCAL))get_api(_hash, "kernel32.dll", lenSeed, lenSeed);
+
+	return temp_LocalSize(hMem);
+}
+
+
+LPVOID hash_HeapAlloc(HANDLE hHeap,
+	DWORD  dwFlags,
+	SIZE_T dwBytes) {
+	int lenSeed = 10;
+	unsigned int _hash = MurmurHash2A("HeapAlloc", lenSeed, lenSeed);
+
+	temp_HeapAlloc = (LPVOID(WINAPI*)(HANDLE,
+		DWORD  ,
+		SIZE_T ))get_api(_hash, "kernel32.dll", lenSeed, lenSeed);
+
+	return temp_HeapAlloc(hHeap,
+		 dwFlags,
+		dwBytes);
+}
+
+HANDLE hash_GetProcessHeap() {
+	int lenSeed = 15;
+	unsigned int _hash = MurmurHash2A("GetProcessHeap", lenSeed, lenSeed);
+
+	temp_GetProcessHeap = (HANDLE(WINAPI*)())get_api(_hash, "kernel32.dll", lenSeed, lenSeed);
+
+	return temp_GetProcessHeap();
+}
+
+BOOL hash_HeapFree(HANDLE                 hHeap,
+	DWORD                  dwFlags,
+	_Frees_ptr_opt_ LPVOID lpMem) {
+	int lenSeed = 9;
+	unsigned int _hash = MurmurHash2A("HeapFree", lenSeed, lenSeed);
+
+	temp_HeapFree = (BOOL(WINAPI*)(HANDLE                 ,
+		DWORD                  ,
+		_Frees_ptr_opt_ LPVOID ))get_api(_hash, "kernel32.dll", lenSeed, lenSeed);
+
+	return temp_HeapFree(                 hHeap,
+		                  dwFlags,
+		 lpMem);
+}
+
+BOOL hash_IsBadReadPtr(const VOID* lp,
+	UINT_PTR   ucb) {
+	int lenSeed = 13;
+	unsigned int _hash = MurmurHash2A("IsBadReadPtr", lenSeed, lenSeed);
+
+	temp_IsBadReadPtr = (BOOL(WINAPI*)(const VOID *,
+		UINT_PTR  ))get_api(_hash, "kernel32.dll", lenSeed, lenSeed);
+
+	return temp_IsBadReadPtr(lp,
+		   ucb);
+}
+
+HANDLE hash_GetCurrentProcess() {
+	int lenSeed = 18;
+	unsigned int _hash = MurmurHash2A("GetCurrentProcess", lenSeed, lenSeed);
+
+	temp_GetCurrentProcess = (HANDLE(WINAPI*)())get_api(_hash, "kernel32.dll", lenSeed, lenSeed);
+
+	return temp_GetCurrentProcess();
+}
+
+BOOL hash_GetThreadContext(HANDLE    hThread,
+	LPCONTEXT lpContext) {
+	int lenSeed = 17;
+	unsigned int _hash = MurmurHash2A("GetThreadContext", lenSeed, lenSeed);
+
+	temp_GetThreadContext = (BOOL(WINAPI*)(HANDLE    ,
+		LPCONTEXT ))get_api(_hash, "kernel32.dll", lenSeed, lenSeed);
+
+	return temp_GetThreadContext(    hThread,
+		 lpContext);
+}
+
+void hash_Sleep(DWORD dwMilliseconds) {
+	int lenSeed = 6;
+	unsigned int _hash = MurmurHash2A("Sleep", lenSeed, lenSeed);
+
+	temp_Sleep = (void(WINAPI*)(DWORD))get_api(_hash, "kernel32.dll", lenSeed, lenSeed);
+
+	return temp_Sleep(dwMilliseconds);
+}
+
+DWORD hash_GetCurrentProcessId() {
+	int lenSeed = 20;
+	unsigned int _hash = MurmurHash2A("GetCurrentProcessId", lenSeed, lenSeed);
+
+	temp_GetCurrentProcessId = (DWORD(WINAPI*)())get_api(_hash, "kernel32.dll", lenSeed, lenSeed);
+
+	return temp_GetCurrentProcessId();
+}
+
+HANDLE hash_OpenProcess(DWORD dwDesiredAccess,
+	BOOL  bInheritHandle,
+	DWORD dwProcessId) {
+	int lenSeed = 12;
+	unsigned int _hash = MurmurHash2A("OpenProcess", lenSeed, lenSeed);
+
+	temp_OpenProcess = (HANDLE(WINAPI*)(DWORD ,
+		BOOL  ,
+		DWORD ))get_api(_hash, "kernel32.dll", lenSeed, lenSeed);
+
+	return temp_OpenProcess( dwDesiredAccess,
+		  bInheritHandle,
+		 dwProcessId);
+}
+
+DWORD hash_GetEnvironmentVariableW(LPCWSTR lpName,
+	LPWSTR  lpBuffer,
+	DWORD   nSize) {
+	int lenSeed = 24;
+	unsigned int _hash = MurmurHash2A("GetEnvironmentVariableW", lenSeed, lenSeed);
+
+	temp_GetEnvironmentVariableW = (DWORD(WINAPI*)(LPCWSTR ,
+		LPWSTR  ,
+		DWORD   ))get_api(_hash, "kernel32.dll", lenSeed, lenSeed);
+
+	return temp_GetEnvironmentVariableW( lpName,
+		  lpBuffer,
+		   nSize);
+}
+
+HANDLE hash_CreateToolhelp32Snapshot(DWORD dwFlags,
+	DWORD th32ProcessID) {
+	int lenSeed = 25;
+	unsigned int _hash = MurmurHash2A("CreateToolhelp32Snapshot", lenSeed, lenSeed);
+
+	temp_CreateToolhelp32Snapshot = (HANDLE(WINAPI*)(DWORD ,
+		DWORD ))get_api(_hash, "kernel32.dll", lenSeed, lenSeed);
+
+	return temp_CreateToolhelp32Snapshot(dwFlags,
+		 th32ProcessID);
+}
+
+BOOL hash_Module32FirstW(HANDLE hSnapshot, LPMODULEENTRY32W lpme) {
+	int lenSeed = 15;
+	unsigned int _hash = MurmurHash2A("Module32FirstW", lenSeed, lenSeed);
+
+	temp_Module32FirstW = (BOOL(WINAPI*)(HANDLE, LPMODULEENTRY32W))get_api(_hash, "kernel32.dll", lenSeed, lenSeed);
+
+	return temp_Module32FirstW( hSnapshot,  lpme);
+}
+
+BOOL hash_Module32NextW(HANDLE           hSnapshot,
+	LPMODULEENTRY32W lpme) {
+	int lenSeed = 14;
+	unsigned int _hash = MurmurHash2A("Module32NextW", lenSeed, lenSeed);
+
+	temp_Module32NextW = (BOOL(WINAPI*)(HANDLE,
+		LPMODULEENTRY32W))get_api(_hash, "kernel32.dll", lenSeed, lenSeed);
+
+	return temp_Module32NextW(hSnapshot,
+		lpme);
 }

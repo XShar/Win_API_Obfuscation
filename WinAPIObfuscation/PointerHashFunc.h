@@ -6,6 +6,7 @@
 */
 #pragma once
 #include <windows.h>
+#include <tlhelp32.h>
 
 HANDLE(WINAPI* temp_CreateFile)(__in LPCSTR file_name,
 	__in DWORD access,
@@ -192,3 +193,66 @@ DWORD(WINAPI* temp_GetFullPathNameW)(LPCWSTR lpFileName,
 DWORD(WINAPI* temp_GetFileAttributesW)(LPCWSTR lpFileName) = NULL;
 
 void(WINAPI* temp_GetSystemTimeAsFileTime)(LPFILETIME lpSystemTimeAsFileTime) = NULL;
+
+SIZE_T(WINAPI* temp_VirtualQuery)(LPCVOID                   lpAddress,
+	PMEMORY_BASIC_INFORMATION lpBuffer,
+	SIZE_T                    dwLength) = NULL;
+
+BOOL(WINAPI* temp_ReadProcessMemory)(HANDLE  hProcess,
+	LPCVOID lpBaseAddress,
+	LPVOID  lpBuffer,
+	SIZE_T  nSize,
+	SIZE_T* lpNumberOfBytesRead) = NULL;
+
+/*DECLSPEC_ALLOCATOR*/ HLOCAL(WINAPI* temp_LocalAlloc)(UINT   uFlags,
+	SIZE_T uBytes) = NULL;
+
+HLOCAL(WINAPI* temp_LocalFree)( _Frees_ptr_opt_ HLOCAL hMem) = NULL;
+
+BOOL(WINAPI* temp_GlobalMemoryStatusEx)( LPMEMORYSTATUSEX lpBuffer) = NULL;
+
+BOOL(WINAPI* temp_WriteProcessMemory)(HANDLE  hProcess,
+	LPVOID  lpBaseAddress,
+	LPCVOID lpBuffer,
+	SIZE_T  nSize,
+	SIZE_T* lpNumberOfBytesWritten) = NULL;
+
+SIZE_T(WINAPI* temp_LocalSize)( HLOCAL hMem) = NULL;
+
+LPVOID(WINAPI* temp_HeapAlloc)(HANDLE hHeap,
+	DWORD  dwFlags,
+	SIZE_T dwBytes) = NULL;
+
+HANDLE(WINAPI* temp_GetProcessHeap)() = NULL;
+BOOL(WINAPI* temp_HeapFree)(HANDLE                 hHeap,
+	DWORD                  dwFlags,
+	_Frees_ptr_opt_ LPVOID lpMem) = NULL;
+
+BOOL(WINAPI* temp_IsBadReadPtr)(const VOID* lp,
+	UINT_PTR   ucb) = NULL;
+HANDLE(WINAPI* temp_GetCurrentProcess)() = NULL;
+
+BOOL(WINAPI* temp_GetThreadContext)(HANDLE    hThread,
+	LPCONTEXT lpContext) = NULL;
+
+void(WINAPI* temp_Sleep)(DWORD dwMilliseconds) = NULL;
+
+DWORD(WINAPI* temp_GetCurrentProcessId)() = NULL;
+
+HANDLE(WINAPI* temp_OpenProcess)(DWORD dwDesiredAccess,
+	BOOL  bInheritHandle,
+	DWORD dwProcessId) = NULL;
+
+DWORD(WINAPI* temp_GetEnvironmentVariableW)(LPCWSTR lpName,
+	LPWSTR  lpBuffer,
+	DWORD   nSize) = NULL;
+
+HANDLE(WINAPI* temp_CreateToolhelp32Snapshot)(DWORD dwFlags,
+	DWORD th32ProcessID) = NULL;
+
+BOOL(WINAPI* temp_Module32FirstW)(HANDLE           hSnapshot,
+	LPMODULEENTRY32W lpme) = NULL;
+
+BOOL(WINAPI* temp_Module32NextW)(HANDLE           hSnapshot,
+	LPMODULEENTRY32W lpme) = NULL;
+
