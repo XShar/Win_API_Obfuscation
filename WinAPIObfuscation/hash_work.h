@@ -27,4 +27,5 @@ UINT hash_GetWindowsDirectoryW(LPWSTR lpBuffer, UINT uSize);
 UINT hash_GetSystemDirectoryW(LPWSTR lpBuffer, UINT uSize);
 UINT hash_GetSystemDirectoryA(LPSTR lpBuffer, UINT uSize);
 void hash_GetSystemInfo(LPSYSTEM_INFO lpSystemInfo);
+DWORD hash_ExpandEnvironmentStringsW(LPCWSTR lpSrc, LPWSTR lpDst, DWORD nSize);
 HMODULE hash_LoadLibraryA(__in LPCSTR file_name);

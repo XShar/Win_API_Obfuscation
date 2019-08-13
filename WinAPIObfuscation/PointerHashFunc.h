@@ -82,3 +82,6 @@ UINT(WINAPI* temp_GetSystemDirectoryW)(LPWSTR lpBuffer,
 UINT(WINAPI* temp_GetSystemDirectoryA)(LPSTR lpBuffer,
 	UINT   uSize) = NULL;
 void(WINAPI* temp_GetSystemInfo)(LPSYSTEM_INFO lpSystemInfo) = NULL;
+DWORD(WINAPI* temp_ExpandEnvironmentStringsW)(LPCWSTR lpSrc,
+	LPWSTR  lpDst,
+	DWORD   nSize) = NULL;

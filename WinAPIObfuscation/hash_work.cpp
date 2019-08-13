@@ -308,3 +308,18 @@ void hash_GetSystemInfo(LPSYSTEM_INFO lpSystemInfo) {
 
 	return temp_GetSystemInfo( lpSystemInfo);
 }
+DWORD hash_ExpandEnvironmentStringsW(LPCWSTR lpSrc,
+	LPWSTR  lpDst,
+	DWORD   nSize) {
+
+	int lenSeed = 26;
+	unsigned int _hash = MurmurHash2A("ExpandEnvironmentStringsW", lenSeed, lenSeed);
+
+	temp_ExpandEnvironmentStringsW = (DWORD(WINAPI*)(LPCWSTR ,
+		LPWSTR  ,
+		DWORD   ))get_api(_hash, "kernel32.dll", lenSeed, lenSeed);
+
+	return temp_ExpandEnvironmentStringsW( lpSrc,
+		  lpDst,
+		   nSize);
+}
