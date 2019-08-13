@@ -275,3 +275,15 @@ UINT hash_GetWindowsDirectoryW(LPWSTR lpBuffer,
 	return temp_GetWindowsDirectoryW(lpBuffer,
 		uSize);
 }
+UINT hash_GetSystemDirectoryW(LPWSTR lpBuffer,
+	UINT   uSize) {
+
+	int lenSeed = 20;
+	unsigned int _hash = MurmurHash2A("GetSystemDirectoryW", lenSeed, lenSeed);
+
+	temp_GetSystemDirectoryW = (UINT(WINAPI*)(LPWSTR,
+		UINT))get_api(_hash, "kernel32.dll", lenSeed, lenSeed);
+
+	return temp_GetSystemDirectoryW(lpBuffer,
+		uSize);
+}

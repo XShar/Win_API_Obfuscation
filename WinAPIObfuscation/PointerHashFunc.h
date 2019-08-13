@@ -77,3 +77,5 @@ UINT(WINAPI* temp_GetSystemWindowsDirectoryW)(LPWSTR lpBuffer,
 	UINT   uSize) = NULL;
 UINT(WINAPI* temp_GetWindowsDirectoryW)(LPWSTR lpBuffer,
 	UINT   uSize) = NULL;
+UINT(WINAPI* temp_GetSystemDirectoryW)(LPWSTR lpBuffer,
+	UINT   uSize) = NULL;
