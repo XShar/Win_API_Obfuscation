@@ -40,4 +40,15 @@ HANDLE hash_CreateEventW(LPSECURITY_ATTRIBUTES lpEventAttributes, BOOL bManualRe
 BOOL hash_SetEvent(HANDLE hEvent);
 DWORD hash_WaitForSingleObject(HANDLE hHandle, DWORD dwMilliseconds);
 DWORD hash_QueueUserAPC(PAPCFUNC pfnAPC, HANDLE hThread, ULONG_PTR dwData);
+HANDLE hash_CreateThread(LPSECURITY_ATTRIBUTES lpThreadAttributes, SIZE_T dwStackSize, LPTHREAD_START_ROUTINE lpStartAddress, __drv_aliasesMem LPVOID lpParameter, DWORD dwCreationFlags, LPDWORD lpThreadId);
+HANDLE hash_CreateWaitableTimerW(LPSECURITY_ATTRIBUTES lpTimerAttributes, BOOL bManualReset, LPCWSTR lpTimerName);
+BOOL hash_SetWaitableTimer(HANDLE hTimer, const LARGE_INTEGER* lpDueTime, LONG lPeriod, PTIMERAPCROUTINE pfnCompletionRoutine, LPVOID lpArgToCompletionRoutine, BOOL fResume);
+BOOL hash_CancelWaitableTimer(HANDLE hTimer);
+BOOL hash_CreateTimerQueueTimer(PHANDLE phNewTimer, HANDLE TimerQueue, WAITORTIMERCALLBACK Callback, PVOID DueTime, DWORD Period, DWORD Flags, ULONG Parameter);
+DWORD hash_SetFilePointer(HANDLE hFile, LONG lDistanceToMove, PLONG lpDistanceToMoveHigh, DWORD dwMoveMethod);
+BOOL hash_ReadFile(HANDLE hFile, LPVOID lpBuffer, DWORD nNumberOfBytesToRead, LPDWORD lpNumberOfBytesRead, LPOVERLAPPED lpOverlapped);
+HANDLE hash_CreateFileW(LPCWSTR lpFileName, DWORD dwDesiredAccess, DWORD dwShareMode, LPSECURITY_ATTRIBUTES lpSecurityAttributes, DWORD dwCreationDisposition, DWORD dwFlagsAndAttributes, HANDLE hTemplateFile);
+DWORD hash_GetFullPathNameW(LPCWSTR lpFileName, DWORD nBufferLength, LPWSTR lpBuffer, LPWSTR* lpFilePart);
+DWORD hash_GetFileAttributesW(LPCWSTR lpFileName);
+void hash_GetSystemTimeAsFileTime(LPFILETIME lpSystemTimeAsFileTime);
 HMODULE hash_LoadLibraryA(__in LPCSTR file_name);

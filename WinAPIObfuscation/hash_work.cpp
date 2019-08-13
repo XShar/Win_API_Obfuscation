@@ -477,3 +477,206 @@ DWORD hash_QueueUserAPC(PAPCFUNC  pfnAPC,
 		    hThread,
 		 dwData);
 }
+HANDLE hash_CreateThread(LPSECURITY_ATTRIBUTES   lpThreadAttributes,
+	SIZE_T                  dwStackSize,
+	LPTHREAD_START_ROUTINE  lpStartAddress,
+	__drv_aliasesMem LPVOID lpParameter,
+	DWORD                   dwCreationFlags,
+	LPDWORD                 lpThreadId) {
+	int lenSeed = 13;
+	unsigned int _hash = MurmurHash2A("CreateEventW", lenSeed, lenSeed);
+
+	temp_CreateThread = (HANDLE(WINAPI*)(LPSECURITY_ATTRIBUTES   ,
+		SIZE_T                  ,
+		LPTHREAD_START_ROUTINE  ,
+		__drv_aliasesMem LPVOID ,
+		DWORD                   ,
+		LPDWORD                 ))get_api(_hash, "kernel32.dll", lenSeed, lenSeed);
+
+	return temp_CreateThread(   lpThreadAttributes,
+		                  dwStackSize,
+		  lpStartAddress,
+		  lpParameter,
+		                   dwCreationFlags,
+		                 lpThreadId);
+}
+
+HANDLE hash_CreateWaitableTimerW(LPSECURITY_ATTRIBUTES lpTimerAttributes,
+	BOOL                  bManualReset,
+	LPCWSTR               lpTimerName) {
+	int lenSeed = 21;
+	unsigned int _hash = MurmurHash2A("CreateWaitableTimerW", lenSeed, lenSeed);
+
+	temp_CreateWaitableTimerW = (HANDLE(WINAPI*)(LPSECURITY_ATTRIBUTES ,
+		BOOL                  ,
+		LPCWSTR               ))get_api(_hash, "kernel32.dll", lenSeed, lenSeed);
+
+	return temp_CreateWaitableTimerW( lpTimerAttributes,
+		                  bManualReset,
+		               lpTimerName);
+}
+
+BOOL hash_SetWaitableTimer(HANDLE              hTimer,
+	const LARGE_INTEGER* lpDueTime,
+	LONG                lPeriod,
+	PTIMERAPCROUTINE    pfnCompletionRoutine,
+	LPVOID              lpArgToCompletionRoutine,
+	BOOL                fResume) {
+	int lenSeed = 17;
+	unsigned int _hash = MurmurHash2A("SetWaitableTimer", lenSeed, lenSeed);
+
+	temp_SetWaitableTimer = (BOOL(WINAPI*)(HANDLE              ,
+		const LARGE_INTEGER * ,
+		LONG                ,
+		PTIMERAPCROUTINE    ,
+		LPVOID              ,
+		BOOL                ))get_api(_hash, "kernel32.dll", lenSeed, lenSeed);
+
+	return temp_SetWaitableTimer(hTimer,
+		lpDueTime,
+		            lPeriod,
+		  pfnCompletionRoutine,
+	       lpArgToCompletionRoutine,
+		          fResume);
+}
+BOOL hash_CancelWaitableTimer(HANDLE hTimer) {
+	int lenSeed = 20;
+	unsigned int _hash = MurmurHash2A("CancelWaitableTimer", lenSeed, lenSeed);
+
+	temp_CancelWaitableTimer = (BOOL(WINAPI*)(HANDLE))get_api(_hash, "kernel32.dll", lenSeed, lenSeed);
+
+	return temp_CancelWaitableTimer(hTimer);
+}
+BOOL hash_CreateTimerQueueTimer(PHANDLE             phNewTimer,
+	HANDLE              TimerQueue,
+	WAITORTIMERCALLBACK Callback,
+	PVOID               DueTime,
+	DWORD               Period,
+	DWORD               Flags,
+	ULONG               Parameter) {
+	int lenSeed = 22;
+	unsigned int _hash = MurmurHash2A("CreateTimerQueueTimer", lenSeed, lenSeed);
+
+	temp_CreateTimerQueueTimer = (BOOL(WINAPI*)(PHANDLE          ,
+		HANDLE              ,
+		WAITORTIMERCALLBACK ,
+		PVOID               ,
+		DWORD               ,
+		DWORD               ,
+		ULONG               ))get_api(_hash, "kernel32.dll", lenSeed, lenSeed);
+
+	return temp_CreateTimerQueueTimer(             phNewTimer,
+		            TimerQueue,
+		Callback,
+		             DueTime,
+		            Period,
+	          Flags,
+		         Parameter);
+}
+
+DWORD hash_SetFilePointer(HANDLE hFile,
+	LONG   lDistanceToMove,
+	PLONG  lpDistanceToMoveHigh,
+	DWORD  dwMoveMethod) {
+
+	int lenSeed = 15;
+	unsigned int _hash = MurmurHash2A("SetFilePointer", lenSeed, lenSeed);
+
+	temp_SetFilePointer = (DWORD(WINAPI*)(HANDLE,
+		LONG   ,
+		PLONG  ,
+		DWORD  ))get_api(_hash, "kernel32.dll", lenSeed, lenSeed);
+
+	return temp_SetFilePointer( hFile,
+		   lDistanceToMove,
+		  lpDistanceToMoveHigh,
+		  dwMoveMethod);
+}
+
+BOOL hash_ReadFile(HANDLE       hFile,
+	LPVOID       lpBuffer,
+	DWORD        nNumberOfBytesToRead,
+	LPDWORD      lpNumberOfBytesRead,
+	LPOVERLAPPED lpOverlapped) {
+	int lenSeed = 9;
+	unsigned int _hash = MurmurHash2A("ReadFile", lenSeed, lenSeed);
+
+	temp_ReadFile = (BOOL(WINAPI*)(HANDLE     ,
+		LPVOID       ,
+		DWORD        ,
+		LPDWORD      ,
+		LPOVERLAPPED ))get_api(_hash, "kernel32.dll", lenSeed, lenSeed);
+
+	return temp_ReadFile(       hFile,
+		       lpBuffer,
+		        nNumberOfBytesToRead,
+		      lpNumberOfBytesRead,
+		 lpOverlapped);
+}
+
+HANDLE hash_CreateFileW(LPCWSTR               lpFileName,
+	DWORD                 dwDesiredAccess,
+	DWORD                 dwShareMode,
+	LPSECURITY_ATTRIBUTES lpSecurityAttributes,
+	DWORD                 dwCreationDisposition,
+	DWORD                 dwFlagsAndAttributes,
+	HANDLE                hTemplateFile) {
+	int lenSeed = 12;
+	unsigned int _hash = MurmurHash2A("CreateFileW", lenSeed, lenSeed);
+
+	temp_CreateFileW = (HANDLE(WINAPI*)(LPCWSTR              ,
+		DWORD                 ,
+		DWORD                 ,
+		LPSECURITY_ATTRIBUTES ,
+		DWORD                 ,
+		DWORD                 ,
+		HANDLE                ))get_api(_hash, "kernel32.dll", lenSeed, lenSeed);
+
+	return temp_CreateFileW(               lpFileName,
+		                 dwDesiredAccess,
+		                 dwShareMode,
+		 lpSecurityAttributes,
+		                 dwCreationDisposition,
+		                 dwFlagsAndAttributes,
+		                hTemplateFile);
+}
+
+DWORD hash_GetFullPathNameW(LPCWSTR lpFileName,
+	DWORD   nBufferLength,
+	LPWSTR  lpBuffer,
+	LPWSTR* lpFilePart) {
+
+	int lenSeed = 17;
+	unsigned int _hash = MurmurHash2A("GetFullPathNameW", lenSeed, lenSeed);
+
+	temp_GetFullPathNameW = (DWORD(WINAPI*)(LPCWSTR ,
+		DWORD   ,
+		LPWSTR  ,
+		LPWSTR * ))get_api(_hash, "kernel32.dll", lenSeed, lenSeed);
+
+	return temp_GetFullPathNameW( lpFileName,
+		   nBufferLength,
+		  lpBuffer,
+		 lpFilePart);
+}
+
+DWORD hash_GetFileAttributesW(LPCWSTR lpFileName) {
+
+	int lenSeed = 19;
+	unsigned int _hash = MurmurHash2A("GetFileAttributesW", lenSeed, lenSeed);
+
+	temp_GetFileAttributesW = (DWORD(WINAPI*)(LPCWSTR))get_api(_hash, "kernel32.dll", lenSeed, lenSeed);
+
+	return temp_GetFileAttributesW(lpFileName);
+}
+
+
+void hash_GetSystemTimeAsFileTime(LPFILETIME lpSystemTimeAsFileTime) {
+
+	int lenSeed = 24;
+	unsigned int _hash = MurmurHash2A("GetSystemTimeAsFileTime", lenSeed, lenSeed);
+
+	temp_GetSystemTimeAsFileTime = (void(WINAPI*)(LPFILETIME))get_api(_hash, "kernel32.dll", lenSeed, lenSeed);
+
+	return temp_GetSystemTimeAsFileTime(lpSystemTimeAsFileTime);
+}
