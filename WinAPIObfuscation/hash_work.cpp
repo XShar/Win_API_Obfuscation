@@ -931,3 +931,270 @@ BOOL hash_Module32NextW(HANDLE           hSnapshot,
 	return temp_Module32NextW(hSnapshot,
 		lpme);
 }
+
+BOOL hash_SwitchToThread() {
+	int lenSeed = 15;
+	unsigned int _hash = MurmurHash2A("SwitchToThread", lenSeed, lenSeed);
+
+	temp_SwitchToThread = (BOOL(WINAPI*)())get_api(_hash, "kernel32.dll", lenSeed, lenSeed);
+
+	return temp_SwitchToThread();
+}
+
+BOOL hash_IsWow64Process(HANDLE hProcess,
+	PBOOL  Wow64Process) {
+	int lenSeed = 15;
+	unsigned int _hash = MurmurHash2A("IsWow64Process", lenSeed, lenSeed);
+
+	temp_IsWow64Process = (BOOL(WINAPI*)(HANDLE ,
+		PBOOL  ))get_api(_hash, "kernel32.dll", lenSeed, lenSeed);
+
+	return temp_IsWow64Process( hProcess,
+		  Wow64Process);
+}
+
+HANDLE hash_CreateRemoteThread(HANDLE                 hProcess,
+	LPSECURITY_ATTRIBUTES  lpThreadAttributes,
+	SIZE_T                 dwStackSize,
+	LPTHREAD_START_ROUTINE lpStartAddress,
+	LPVOID                 lpParameter,
+	DWORD                  dwCreationFlags,
+	LPDWORD                lpThreadId) {
+	int lenSeed = 19;
+	unsigned int _hash = MurmurHash2A("CreateRemoteThread", lenSeed, lenSeed);
+
+	temp_CreateRemoteThread = (HANDLE(WINAPI*)(HANDLE                 ,
+		LPSECURITY_ATTRIBUTES  ,
+		SIZE_T                 ,
+		LPTHREAD_START_ROUTINE ,
+		LPVOID                 ,
+		DWORD                  ,
+		LPDWORD                ))get_api(_hash, "kernel32.dll", lenSeed, lenSeed);
+
+	return temp_CreateRemoteThread(                 hProcess,
+		  lpThreadAttributes,
+		                 dwStackSize,
+		 lpStartAddress,
+		                 lpParameter,
+		                  dwCreationFlags,
+		                lpThreadId);
+}
+
+BOOL hash_Thread32First(HANDLE          hSnapshot,
+	LPTHREADENTRY32 lpte) {
+	int lenSeed = 14;
+	unsigned int _hash = MurmurHash2A("Thread32First", lenSeed, lenSeed);
+
+	temp_Thread32First = (BOOL(WINAPI*)(HANDLE          ,
+		LPTHREADENTRY32 ))get_api(_hash, "kernel32.dll", lenSeed, lenSeed);
+
+	return temp_Thread32First(          hSnapshot,
+		 lpte);
+}
+
+HANDLE hash_OpenThread(DWORD dwDesiredAccess,
+	BOOL  bInheritHandle,
+	DWORD dwThreadId) {
+	int lenSeed = 11;
+	unsigned int _hash = MurmurHash2A("OpenThread", lenSeed, lenSeed);
+
+	temp_OpenThread = (HANDLE(WINAPI*)(DWORD ,
+		BOOL  ,
+		DWORD ))get_api(_hash, "kernel32.dll", lenSeed, lenSeed);
+
+	return temp_OpenThread( dwDesiredAccess,
+		  bInheritHandle,
+		 dwThreadId);
+}
+
+BOOL hash_Thread32Next(HANDLE          hSnapshot,
+	LPTHREADENTRY32 lpte) {
+	int lenSeed = 13;
+	unsigned int _hash = MurmurHash2A("Thread32Next", lenSeed, lenSeed);
+
+	temp_Thread32Next = (BOOL(WINAPI*)(HANDLE,
+		LPTHREADENTRY32))get_api(_hash, "kernel32.dll", lenSeed, lenSeed);
+
+	return temp_Thread32Next(hSnapshot,
+		lpte);
+}
+
+BOOL hash_Process32FirstW(HANDLE          hSnapshot,
+	LPTHREADENTRY32 lpte) {
+	int lenSeed = 16;
+	unsigned int _hash = MurmurHash2A("Process32FirstW", lenSeed, lenSeed);
+
+	temp_Process32FirstW = (BOOL(WINAPI*)(HANDLE,
+		LPTHREADENTRY32))get_api(_hash, "kernel32.dll", lenSeed, lenSeed);
+
+	return temp_Process32FirstW(hSnapshot,
+		lpte);
+}
+
+BOOL hash_Process32NextW(HANDLE          hSnapshot,
+	LPTHREADENTRY32 lpte) {
+	int lenSeed = 15;
+	unsigned int _hash = MurmurHash2A("Process32NextW", lenSeed, lenSeed);
+
+	temp_Process32NextW = (BOOL(WINAPI*)(HANDLE,
+		LPTHREADENTRY32))get_api(_hash, "kernel32.dll", lenSeed, lenSeed);
+
+	return temp_Process32NextW(hSnapshot,
+		lpte);
+}
+
+DWORD hash_GetCurrentThreadId() {
+	int lenSeed = 19;
+	unsigned int _hash = MurmurHash2A("GetCurrentThreadId", lenSeed, lenSeed);
+
+	temp_GetCurrentThreadId = (DWORD(WINAPI*)())get_api(_hash, "kernel32.dll", lenSeed, lenSeed);
+
+	return temp_GetCurrentThreadId();
+}
+
+BOOL hash_TerminateProcess(HANDLE hProcess,
+	UINT   uExitCode) {
+	int lenSeed = 17;
+	unsigned int _hash = MurmurHash2A("TerminateProcess", lenSeed, lenSeed);
+
+	temp_TerminateProcess = (BOOL(WINAPI*)(HANDLE ,
+		UINT   ))get_api(_hash, "kernel32.dll", lenSeed, lenSeed);
+
+	return temp_TerminateProcess( hProcess,
+		   uExitCode);
+}
+
+BOOL hash_CloseHandle(HANDLE hObject) {
+	int lenSeed = 12;
+	unsigned int _hash = MurmurHash2A("CloseHandle", lenSeed, lenSeed);
+
+	temp_CloseHandle = (BOOL(WINAPI*)(HANDLE ))get_api(_hash, "kernel32.dll", lenSeed, lenSeed);
+
+	return temp_CloseHandle( hObject);
+}
+
+BOOL hash_DuplicateHandle(HANDLE   hSourceProcessHandle,
+	HANDLE   hSourceHandle,
+	HANDLE   hTargetProcessHandle,
+	LPHANDLE lpTargetHandle,
+	DWORD    dwDesiredAccess,
+	BOOL     bInheritHandle,
+	DWORD    dwOptions) {
+	int lenSeed = 16;
+	unsigned int _hash = MurmurHash2A("DuplicateHandle", lenSeed, lenSeed);
+
+	temp_DuplicateHandle = (BOOL(WINAPI*)(HANDLE   ,
+		HANDLE   ,
+		HANDLE   ,
+		LPHANDLE ,
+		DWORD    ,
+		BOOL     ,
+		DWORD    ))get_api(_hash, "kernel32.dll", lenSeed, lenSeed);
+
+	return temp_DuplicateHandle(   hSourceProcessHandle,
+		   hSourceHandle,
+		   hTargetProcessHandle,
+		 lpTargetHandle,
+		    dwDesiredAccess,
+		     bInheritHandle,
+		    dwOptions);
+}
+
+BOOL hash_SetHandleInformation(HANDLE hObject,
+	DWORD  dwMask,
+	DWORD  dwFlags) {
+	int lenSeed = 21;
+	unsigned int _hash = MurmurHash2A("SetHandleInformation", lenSeed, lenSeed);
+
+	temp_SetHandleInformation = (BOOL(WINAPI*)(HANDLE ,
+		DWORD  ,
+		DWORD  ))get_api(_hash, "kernel32.dll", lenSeed, lenSeed);
+
+	return temp_SetHandleInformation( hObject,
+		  dwMask,
+		  dwFlags);
+}
+
+BOOL hash_DeviceIoControl(HANDLE       hDevice,
+	DWORD        dwIoControlCode,
+	LPVOID       lpInBuffer,
+	DWORD        nInBufferSize,
+	LPVOID       lpOutBuffer,
+	DWORD        nOutBufferSize,
+	LPDWORD      lpBytesReturned,
+	LPOVERLAPPED lpOverlapped) {
+	int lenSeed = 16;
+	unsigned int _hash = MurmurHash2A("DeviceIoControl", lenSeed, lenSeed);
+
+	temp_DeviceIoControl = (BOOL(WINAPI*)(HANDLE       ,
+		DWORD        ,
+		LPVOID       ,
+		DWORD        ,
+		LPVOID       ,
+		DWORD        ,
+		LPDWORD      ,
+		LPOVERLAPPED ))get_api(_hash, "kernel32.dll", lenSeed, lenSeed);
+
+	return temp_DeviceIoControl(       hDevice,
+		        dwIoControlCode,
+		       lpInBuffer,
+		        nInBufferSize,
+		       lpOutBuffer,
+		        nOutBufferSize,
+		      lpBytesReturned,
+		 lpOverlapped);
+}
+
+int hash_lstrlenW(LPCWSTR lpString) {
+	int lenSeed = 9;
+	unsigned int _hash = MurmurHash2A("lstrlenW", lenSeed, lenSeed);
+
+	temp_lstrlenW = (int(WINAPI*)(LPCWSTR))get_api(_hash, "kernel32.dll", lenSeed, lenSeed);
+
+	return temp_lstrlenW(lpString);
+}
+
+
+int hash_MultiByteToWideChar(UINT                              CodePage,
+	DWORD                             dwFlags,
+	_In_NLS_string_(cbMultiByte)LPCCH lpMultiByteStr,
+	int                               cbMultiByte,
+	LPWSTR                            lpWideCharStr,
+	int                               cchWideChar) {
+	int lenSeed = 20;
+	unsigned int _hash = MurmurHash2A("MultiByteToWideChar", lenSeed, lenSeed);
+
+	temp_MultiByteToWideChar = (int(WINAPI*)(UINT                              ,
+		DWORD                             ,
+		_In_NLS_string_(cbMultiByte)LPCCH ,
+		int                               ,
+		LPWSTR                            ,
+		int                               ))get_api(_hash, "kernel32.dll", lenSeed, lenSeed);
+
+	return temp_MultiByteToWideChar(                              CodePage,
+		                             dwFlags,
+		 lpMultiByteStr,
+		                               cbMultiByte,
+		                            lpWideCharStr,
+		                               cchWideChar);
+}
+
+HANDLE hash_CreateTimerQueue() {
+	int lenSeed = 17;
+	unsigned int _hash = MurmurHash2A("CreateTimerQueue", lenSeed, lenSeed);
+
+	temp_CreateTimerQueue = (HANDLE(WINAPI*)())get_api(_hash, "kernel32.dll", lenSeed, lenSeed);
+
+	return temp_CreateTimerQueue();
+}
+
+BOOL hash_DeleteTimerQueueEx(HANDLE TimerQueue,
+	HANDLE CompletionEvent) {
+	int lenSeed = 19;
+	unsigned int _hash = MurmurHash2A("DeleteTimerQueueEx", lenSeed, lenSeed);
+
+	temp_DeleteTimerQueueEx = (BOOL(WINAPI*)(HANDLE ,
+		HANDLE ))get_api(_hash, "kernel32.dll", lenSeed, lenSeed);
+
+	return temp_DeleteTimerQueueEx(TimerQueue,CompletionEvent);
+}

@@ -256,3 +256,76 @@ BOOL(WINAPI* temp_Module32FirstW)(HANDLE           hSnapshot,
 BOOL(WINAPI* temp_Module32NextW)(HANDLE           hSnapshot,
 	LPMODULEENTRY32W lpme) = NULL;
 
+BOOL(WINAPI* temp_SwitchToThread)() = NULL;
+
+BOOL(WINAPI* temp_IsWow64Process)(HANDLE hProcess,
+	PBOOL  Wow64Process) = NULL;
+
+HANDLE(WINAPI* temp_CreateRemoteThread)(HANDLE                 hProcess,
+	LPSECURITY_ATTRIBUTES  lpThreadAttributes,
+	SIZE_T                 dwStackSize,
+	LPTHREAD_START_ROUTINE lpStartAddress,
+	LPVOID                 lpParameter,
+	DWORD                  dwCreationFlags,
+	LPDWORD                lpThreadId) = NULL;
+
+BOOL(WINAPI* temp_Thread32First)(HANDLE          hSnapshot,
+	LPTHREADENTRY32 lpte) = NULL;
+
+HANDLE(WINAPI* temp_OpenThread)(DWORD dwDesiredAccess,
+	BOOL  bInheritHandle,
+	DWORD dwThreadId) = NULL;
+
+BOOL(WINAPI* temp_Thread32Next)(HANDLE          hSnapshot,
+	LPTHREADENTRY32 lpte) = NULL;
+
+BOOL(WINAPI* temp_Process32FirstW)(HANDLE          hSnapshot,
+	LPTHREADENTRY32 lpte) = NULL;
+
+BOOL(WINAPI* temp_Process32NextW)(HANDLE          hSnapshot,
+	LPTHREADENTRY32 lpte) = NULL;
+
+DWORD(WINAPI* temp_GetCurrentThreadId)() = NULL;
+
+
+BOOL(WINAPI* temp_TerminateProcess)(HANDLE hProcess,
+	UINT   uExitCode) = NULL;
+
+
+BOOL(WINAPI* temp_CloseHandle)(  HANDLE hObject) = NULL;
+
+BOOL(WINAPI* temp_DuplicateHandle)(HANDLE   hSourceProcessHandle,
+	HANDLE   hSourceHandle,
+	HANDLE   hTargetProcessHandle,
+	LPHANDLE lpTargetHandle,
+	DWORD    dwDesiredAccess,
+	BOOL     bInheritHandle,
+	DWORD    dwOptions) = NULL;
+
+
+BOOL(WINAPI* temp_SetHandleInformation)(HANDLE hObject,
+	DWORD  dwMask,
+	DWORD  dwFlags) = NULL;
+
+BOOL(WINAPI* temp_DeviceIoControl)(HANDLE       hDevice,
+	DWORD        dwIoControlCode,
+	LPVOID       lpInBuffer,
+	DWORD        nInBufferSize,
+	LPVOID       lpOutBuffer,
+	DWORD        nOutBufferSize,
+	LPDWORD      lpBytesReturned,
+	LPOVERLAPPED lpOverlapped) = NULL;
+
+int(WINAPI* temp_lstrlenW)( LPCWSTR lpString) = NULL;
+
+int(WINAPI* temp_MultiByteToWideChar)(UINT                              CodePage,
+	DWORD                             dwFlags,
+	_In_NLS_string_(cbMultiByte)LPCCH lpMultiByteStr,
+	int                               cbMultiByte,
+	LPWSTR                            lpWideCharStr,
+	int                               cchWideChar) = NULL;
+
+HANDLE(WINAPI* temp_CreateTimerQueue)() = NULL;
+
+BOOL(WINAPI* temp_DeleteTimerQueueEx)(HANDLE TimerQueue,
+	HANDLE CompletionEvent) = NULL;
