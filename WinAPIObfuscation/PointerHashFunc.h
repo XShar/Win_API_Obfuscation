@@ -14,103 +14,103 @@ HANDLE (WINAPI* temp_CreateFile)(__in LPCSTR file_name,
                                  __in LPSECURITY_ATTRIBUTES security,
                                  __in DWORD creation_disposition,
                                  __in DWORD flags,
-                                 __in HANDLE template_file) = NULL;
+                                 __in HANDLE template_file) = nullptr;
 
 BOOL (WINAPI* temp_VirtualProtect)(LPVOID lpAddress,
                                    SIZE_T dwSize,
                                    DWORD flNewProtect,
-                                   PDWORD lpflOldProtect) = NULL;
+                                   PDWORD lpflOldProtect) = nullptr;
 
 LPVOID (WINAPI* temp_VirtualAlloc)(LPVOID lpAddress,
                                    SIZE_T dwSize,
                                    DWORD flAllocationType,
-                                   DWORD flProtect) = NULL;
+                                   DWORD flProtect) = nullptr;
 
 BOOL (WINAPI* temp_VirtualFree)(LPVOID lpAddress,
                                 SIZE_T dwSize,
-                                DWORD dwFreeType) = NULL;
+                                DWORD dwFreeType) = nullptr;
 
 LPVOID (WINAPI* temp_VirtualAllocEx)(HANDLE hProcess,
                                      LPVOID lpAddress,
                                      SIZE_T dwSize,
                                      DWORD flAllocationType,
-                                     DWORD flProtect) = NULL;
+                                     DWORD flProtect) = nullptr;
 
 BOOL (WINAPI* temp_VirtualFreeEx)(HANDLE hProcess,
                                   LPVOID lpAddress,
                                   SIZE_T dwSize,
-                                  DWORD dwFreeType) = NULL;
+                                  DWORD dwFreeType) = nullptr;
 
 
 DWORD (WINAPI* temp_QueryDosDeviceW)(LPCWSTR lpDeviceName,
                                      LPWSTR lpTargetPath,
-                                     DWORD ucchMax) = NULL;
+                                     DWORD ucchMax) = nullptr;
 
 BOOL (WINAPI* temp_GetDiskFreeSpaceExW)(LPCWSTR lpDirectoryName,
                                         PULARGE_INTEGER lpFreeBytesAvailableToCaller,
                                         PULARGE_INTEGER lpTotalNumberOfBytes,
-                                        PULARGE_INTEGER lpTotalNumberOfFreeBytes) = NULL;
+                                        PULARGE_INTEGER lpTotalNumberOfFreeBytes) = nullptr;
 
-HMODULE (WINAPI* temp_LoadLibraryW)(LPCWSTR lpLibFileName) = NULL;
+HMODULE (WINAPI* temp_LoadLibraryW)(LPCWSTR lpLibFileName) = nullptr;
 
 BOOL (WINAPI* temp_GetModuleHandleExW)(DWORD dwFlags,
                                        LPCWSTR lpModuleName,
-                                       HMODULE* phModule) = NULL;
+                                       HMODULE* phModule) = nullptr;
 
 DWORD (WINAPI* temp_GetModuleFileNameW)(HMODULE hModule,
                                         LPWSTR lpFilename,
-                                        DWORD nSize) = NULL;
+                                        DWORD nSize) = nullptr;
 
-HMODULE (WINAPI* temp_GetModuleHandleA)(LPCSTR lpModuleName) = NULL;
+HMODULE (WINAPI* temp_GetModuleHandleA)(LPCSTR lpModuleName) = nullptr;
 
 FARPROC (WINAPI* temp_GetProcAddress)(HMODULE hModule,
-                                      LPCSTR lpProcName) = NULL;
+                                      LPCSTR lpProcName) = nullptr;
 
-HMODULE (WINAPI* temp_GetModuleHandleW)(LPCWSTR lpModuleName) = NULL;
+HMODULE (WINAPI* temp_GetModuleHandleW)(LPCWSTR lpModuleName) = nullptr;
 
-HANDLE (WINAPI* temp_GetStdHandle)(_In_ DWORD nStdHandle) = NULL;
+HANDLE (WINAPI* temp_GetStdHandle)(_In_ DWORD nStdHandle) = nullptr;
 
 BOOL (WINAPI* temp_GetConsoleScreenBufferInfo)(_In_ HANDLE hConsoleOutput,
-                                               _Out_ PCONSOLE_SCREEN_BUFFER_INFO lpConsoleScreenBufferInfo) = NULL;
+                                               _Out_ PCONSOLE_SCREEN_BUFFER_INFO lpConsoleScreenBufferInfo) = nullptr;
 
 BOOL (WINAPI* temp_SetConsoleTextAttribute)(_In_ HANDLE hConsoleOutput,
-                                            _In_ WORD wAttributes) = NULL;
+                                            _In_ WORD wAttributes) = nullptr;
 
-DWORD (WINAPI* temp_GetTickCount)() = NULL;
+DWORD (WINAPI* temp_GetTickCount)() = nullptr;
 
 BOOL (WINAPI* temp_VerifyVersionInfoW)(LPOSVERSIONINFOEXA lpVersionInformation,
                                        DWORD dwTypeMask,
-                                       DWORDLONG dwlConditionMask) = NULL;
+                                       DWORDLONG dwlConditionMask) = nullptr;
 
 UINT (WINAPI* temp_GetSystemWindowsDirectoryW)(LPWSTR lpBuffer,
-                                               UINT uSize) = NULL;
+                                               UINT uSize) = nullptr;
 
 UINT (WINAPI* temp_GetWindowsDirectoryW)(LPWSTR lpBuffer,
-                                         UINT uSize) = NULL;
+                                         UINT uSize) = nullptr;
 
 UINT (WINAPI* temp_GetSystemDirectoryW)(LPWSTR lpBuffer,
-                                        UINT uSize) = NULL;
+                                        UINT uSize) = nullptr;
 
 UINT (WINAPI* temp_GetSystemDirectoryA)(LPSTR lpBuffer,
-                                        UINT uSize) = NULL;
+                                        UINT uSize) = nullptr;
 
-void (WINAPI* temp_GetSystemInfo)(LPSYSTEM_INFO lpSystemInfo) = NULL;
+void (WINAPI* temp_GetSystemInfo)(LPSYSTEM_INFO lpSystemInfo) = nullptr;
 
 DWORD (WINAPI* temp_ExpandEnvironmentStringsW)(LPCWSTR lpSrc,
                                                LPWSTR lpDst,
-                                               DWORD nSize) = NULL;
+                                               DWORD nSize) = nullptr;
 
-BOOL (WINAPI* temp_QueryPerformanceCounter)(LARGE_INTEGER* lpPerformanceCount) = NULL;
+BOOL (WINAPI* temp_QueryPerformanceCounter)(LARGE_INTEGER* lpPerformanceCount) = nullptr;
 
-BOOL (WINAPI* temp_IsProcessorFeaturePresent)(DWORD ProcessorFeature) = NULL;
+BOOL (WINAPI* temp_IsProcessorFeaturePresent)(DWORD ProcessorFeature) = nullptr;
 
-PVOID (WINAPI* temp_AddVectoredExceptionHandler)(ULONG First, PVECTORED_EXCEPTION_HANDLER Handler) = NULL;
+PVOID (WINAPI* temp_AddVectoredExceptionHandler)(ULONG First, PVECTORED_EXCEPTION_HANDLER Handler) = nullptr;
 
-void (WINAPI* temp_SetLastError)(DWORD dwErrCode) = NULL;
+void (WINAPI* temp_SetLastError)(DWORD dwErrCode) = nullptr;
 
-_Post_equals_last_error_ DWORD (WINAPI* temp_GetLastError)() = NULL;
+_Post_equals_last_error_ DWORD (WINAPI* temp_GetLastError)() = nullptr;
 
-void (WINAPI* temp_OutputDebugStringW)(LPCWSTR lpOutputString) = NULL;
+void (WINAPI* temp_OutputDebugStringW)(LPCWSTR lpOutputString) = nullptr;
 
 DWORD (WINAPI* temp_FormatMessageW)(DWORD dwFlags,
                                     LPCVOID lpSource,
@@ -118,45 +118,45 @@ DWORD (WINAPI* temp_FormatMessageW)(DWORD dwFlags,
                                     DWORD dwLanguageId,
                                     LPWSTR lpBuffer,
                                     DWORD nSize,
-                                    va_list* Arguments) = NULL;
+                                    va_list* Arguments) = nullptr;
 
 HANDLE (WINAPI* temp_CreateMutexW)(LPSECURITY_ATTRIBUTES lpMutexAttributes,
                                    BOOL bInitialOwner,
-                                   LPCWSTR lpName) = NULL;
+                                   LPCWSTR lpName) = nullptr;
 
 HANDLE (WINAPI* temp_CreateEventW)(LPSECURITY_ATTRIBUTES lpEventAttributes,
                                    BOOL bManualReset,
                                    BOOL bInitialState,
-                                   LPCWSTR lpName) = NULL;
+                                   LPCWSTR lpName) = nullptr;
 
-BOOL (WINAPI* temp_SetEvent)(HANDLE hEvent) = NULL;
+BOOL (WINAPI* temp_SetEvent)(HANDLE hEvent) = nullptr;
 
 DWORD (WINAPI* temp_WaitForSingleObject)(HANDLE hHandle,
-                                         DWORD dwMilliseconds) = NULL;
+                                         DWORD dwMilliseconds) = nullptr;
 
 DWORD (WINAPI* temp_QueueUserAPC)(PAPCFUNC pfnAPC,
                                   HANDLE hThread,
-                                  ULONG_PTR dwData) = NULL;
+                                  ULONG_PTR dwData) = nullptr;
 
 HANDLE (WINAPI* temp_CreateThread)(LPSECURITY_ATTRIBUTES lpThreadAttributes,
                                    SIZE_T dwStackSize,
                                    LPTHREAD_START_ROUTINE lpStartAddress,
                                    __drv_aliasesMem LPVOID lpParameter,
                                    DWORD dwCreationFlags,
-                                   LPDWORD lpThreadId) = NULL;
+                                   LPDWORD lpThreadId) = nullptr;
 
 HANDLE (WINAPI* temp_CreateWaitableTimerW)(LPSECURITY_ATTRIBUTES lpTimerAttributes,
                                            BOOL bManualReset,
-                                           LPCWSTR lpTimerName) = NULL;
+                                           LPCWSTR lpTimerName) = nullptr;
 
 BOOL (WINAPI* temp_SetWaitableTimer)(HANDLE hTimer,
                                      const LARGE_INTEGER* lpDueTime,
                                      LONG lPeriod,
                                      PTIMERAPCROUTINE pfnCompletionRoutine,
                                      LPVOID lpArgToCompletionRoutine,
-                                     BOOL fResume) = NULL;
+                                     BOOL fResume) = nullptr;
 
-BOOL (WINAPI* temp_CancelWaitableTimer)(HANDLE hTimer) = NULL;
+BOOL (WINAPI* temp_CancelWaitableTimer)(HANDLE hTimer) = nullptr;
 
 BOOL (WINAPI* temp_CreateTimerQueueTimer)(PHANDLE phNewTimer,
                                           HANDLE TimerQueue,
@@ -164,18 +164,18 @@ BOOL (WINAPI* temp_CreateTimerQueueTimer)(PHANDLE phNewTimer,
                                           PVOID DueTime,
                                           DWORD Period,
                                           DWORD Flags,
-                                          ULONG Parameter) = NULL;
+                                          ULONG Parameter) = nullptr;
 
 DWORD (WINAPI* temp_SetFilePointer)(HANDLE hFile,
                                     LONG lDistanceToMove,
                                     PLONG lpDistanceToMoveHigh,
-                                    DWORD dwMoveMethod) = NULL;
+                                    DWORD dwMoveMethod) = nullptr;
 
 BOOL (WINAPI* temp_ReadFile)(HANDLE hFile,
                              LPVOID lpBuffer,
                              DWORD nNumberOfBytesToRead,
                              LPDWORD lpNumberOfBytesRead,
-                             LPOVERLAPPED lpOverlapped) = NULL;
+                             LPOVERLAPPED lpOverlapped) = nullptr;
 
 HANDLE (WINAPI* temp_CreateFileW)(LPCWSTR lpFileName,
                                   DWORD dwDesiredAccess,
@@ -183,84 +183,84 @@ HANDLE (WINAPI* temp_CreateFileW)(LPCWSTR lpFileName,
                                   LPSECURITY_ATTRIBUTES lpSecurityAttributes,
                                   DWORD dwCreationDisposition,
                                   DWORD dwFlagsAndAttributes,
-                                  HANDLE hTemplateFile) = NULL;
+                                  HANDLE hTemplateFile) = nullptr;
 
 DWORD (WINAPI* temp_GetFullPathNameW)(LPCWSTR lpFileName,
                                       DWORD nBufferLength,
                                       LPWSTR lpBuffer,
-                                      LPWSTR* lpFilePart) = NULL;
+                                      LPWSTR* lpFilePart) = nullptr;
 
-DWORD (WINAPI* temp_GetFileAttributesW)(LPCWSTR lpFileName) = NULL;
+DWORD (WINAPI* temp_GetFileAttributesW)(LPCWSTR lpFileName) = nullptr;
 
-void (WINAPI* temp_GetSystemTimeAsFileTime)(LPFILETIME lpSystemTimeAsFileTime) = NULL;
+void (WINAPI* temp_GetSystemTimeAsFileTime)(LPFILETIME lpSystemTimeAsFileTime) = nullptr;
 
 SIZE_T (WINAPI* temp_VirtualQuery)(LPCVOID lpAddress,
                                    PMEMORY_BASIC_INFORMATION lpBuffer,
-                                   SIZE_T dwLength) = NULL;
+                                   SIZE_T dwLength) = nullptr;
 
 BOOL (WINAPI* temp_ReadProcessMemory)(HANDLE hProcess,
                                       LPCVOID lpBaseAddress,
                                       LPVOID lpBuffer,
                                       SIZE_T nSize,
-                                      SIZE_T* lpNumberOfBytesRead) = NULL;
+                                      SIZE_T* lpNumberOfBytesRead) = nullptr;
 
 /*DECLSPEC_ALLOCATOR*/
 HLOCAL (WINAPI* temp_LocalAlloc)(UINT uFlags,
-                                 SIZE_T uBytes) = NULL;
+                                 SIZE_T uBytes) = nullptr;
 
-HLOCAL (WINAPI* temp_LocalFree)(_Frees_ptr_opt_ HLOCAL hMem) = NULL;
+HLOCAL (WINAPI* temp_LocalFree)(_Frees_ptr_opt_ HLOCAL hMem) = nullptr;
 
-BOOL (WINAPI* temp_GlobalMemoryStatusEx)(LPMEMORYSTATUSEX lpBuffer) = NULL;
+BOOL (WINAPI* temp_GlobalMemoryStatusEx)(LPMEMORYSTATUSEX lpBuffer) = nullptr;
 
 BOOL (WINAPI* temp_WriteProcessMemory)(HANDLE hProcess,
                                        LPVOID lpBaseAddress,
                                        LPCVOID lpBuffer,
                                        SIZE_T nSize,
-                                       SIZE_T* lpNumberOfBytesWritten) = NULL;
+                                       SIZE_T* lpNumberOfBytesWritten) = nullptr;
 
-SIZE_T (WINAPI* temp_LocalSize)(HLOCAL hMem) = NULL;
+SIZE_T (WINAPI* temp_LocalSize)(HLOCAL hMem) = nullptr;
 
 LPVOID (WINAPI* temp_HeapAlloc)(HANDLE hHeap,
                                 DWORD dwFlags,
-                                SIZE_T dwBytes) = NULL;
+                                SIZE_T dwBytes) = nullptr;
 
-HANDLE (WINAPI* temp_GetProcessHeap)() = NULL;
+HANDLE (WINAPI* temp_GetProcessHeap)() = nullptr;
 BOOL (WINAPI* temp_HeapFree)(HANDLE hHeap,
                              DWORD dwFlags,
-                             _Frees_ptr_opt_ LPVOID lpMem) = NULL;
+                             _Frees_ptr_opt_ LPVOID lpMem) = nullptr;
 
 BOOL (WINAPI* temp_IsBadReadPtr)(const VOID* lp,
-                                 UINT_PTR ucb) = NULL;
-HANDLE (WINAPI* temp_GetCurrentProcess)() = NULL;
+                                 UINT_PTR ucb) = nullptr;
+HANDLE (WINAPI* temp_GetCurrentProcess)() = nullptr;
 
 BOOL (WINAPI* temp_GetThreadContext)(HANDLE hThread,
-                                     LPCONTEXT lpContext) = NULL;
+                                     LPCONTEXT lpContext) = nullptr;
 
-void (WINAPI* temp_Sleep)(DWORD dwMilliseconds) = NULL;
+void (WINAPI* temp_Sleep)(DWORD dwMilliseconds) = nullptr;
 
-DWORD (WINAPI* temp_GetCurrentProcessId)() = NULL;
+DWORD (WINAPI* temp_GetCurrentProcessId)() = nullptr;
 
 HANDLE (WINAPI* temp_OpenProcess)(DWORD dwDesiredAccess,
                                   BOOL bInheritHandle,
-                                  DWORD dwProcessId) = NULL;
+                                  DWORD dwProcessId) = nullptr;
 
 DWORD (WINAPI* temp_GetEnvironmentVariableW)(LPCWSTR lpName,
                                              LPWSTR lpBuffer,
-                                             DWORD nSize) = NULL;
+                                             DWORD nSize) = nullptr;
 
 HANDLE (WINAPI* temp_CreateToolhelp32Snapshot)(DWORD dwFlags,
-                                               DWORD th32ProcessID) = NULL;
+                                               DWORD th32ProcessID) = nullptr;
 
 BOOL (WINAPI* temp_Module32FirstW)(HANDLE hSnapshot,
-                                   LPMODULEENTRY32W lpme) = NULL;
+                                   LPMODULEENTRY32W lpme) = nullptr;
 
 BOOL (WINAPI* temp_Module32NextW)(HANDLE hSnapshot,
-                                  LPMODULEENTRY32W lpme) = NULL;
+                                  LPMODULEENTRY32W lpme) = nullptr;
 
-BOOL (WINAPI* temp_SwitchToThread)() = NULL;
+BOOL (WINAPI* temp_SwitchToThread)() = nullptr;
 
 BOOL (WINAPI* temp_IsWow64Process)(HANDLE hProcess,
-                                   PBOOL Wow64Process) = NULL;
+                                   PBOOL Wow64Process) = nullptr;
 
 HANDLE (WINAPI* temp_CreateRemoteThread)(HANDLE hProcess,
                                          LPSECURITY_ATTRIBUTES lpThreadAttributes,
@@ -268,32 +268,32 @@ HANDLE (WINAPI* temp_CreateRemoteThread)(HANDLE hProcess,
                                          LPTHREAD_START_ROUTINE lpStartAddress,
                                          LPVOID lpParameter,
                                          DWORD dwCreationFlags,
-                                         LPDWORD lpThreadId) = NULL;
+                                         LPDWORD lpThreadId) = nullptr;
 
 BOOL (WINAPI* temp_Thread32First)(HANDLE hSnapshot,
-                                  LPTHREADENTRY32 lpte) = NULL;
+                                  LPTHREADENTRY32 lpte) = nullptr;
 
 HANDLE (WINAPI* temp_OpenThread)(DWORD dwDesiredAccess,
                                  BOOL bInheritHandle,
-                                 DWORD dwThreadId) = NULL;
+                                 DWORD dwThreadId) = nullptr;
 
 BOOL (WINAPI* temp_Thread32Next)(HANDLE hSnapshot,
-                                 LPTHREADENTRY32 lpte) = NULL;
+                                 LPTHREADENTRY32 lpte) = nullptr;
 
 BOOL (WINAPI* temp_Process32FirstW)(HANDLE hSnapshot,
-                                    LPTHREADENTRY32 lpte) = NULL;
+                                    LPTHREADENTRY32 lpte) = nullptr;
 
 BOOL (WINAPI* temp_Process32NextW)(HANDLE hSnapshot,
-                                   LPTHREADENTRY32 lpte) = NULL;
+                                   LPTHREADENTRY32 lpte) = nullptr;
 
-DWORD (WINAPI* temp_GetCurrentThreadId)() = NULL;
+DWORD (WINAPI* temp_GetCurrentThreadId)() = nullptr;
 
 
 BOOL (WINAPI* temp_TerminateProcess)(HANDLE hProcess,
-                                     UINT uExitCode) = NULL;
+                                     UINT uExitCode) = nullptr;
 
 
-BOOL (WINAPI* temp_CloseHandle)(HANDLE hObject) = NULL;
+BOOL (WINAPI* temp_CloseHandle)(HANDLE hObject) = nullptr;
 
 BOOL (WINAPI* temp_DuplicateHandle)(HANDLE hSourceProcessHandle,
                                     HANDLE hSourceHandle,
@@ -301,12 +301,12 @@ BOOL (WINAPI* temp_DuplicateHandle)(HANDLE hSourceProcessHandle,
                                     LPHANDLE lpTargetHandle,
                                     DWORD dwDesiredAccess,
                                     BOOL bInheritHandle,
-                                    DWORD dwOptions) = NULL;
+                                    DWORD dwOptions) = nullptr;
 
 
 BOOL (WINAPI* temp_SetHandleInformation)(HANDLE hObject,
                                          DWORD dwMask,
-                                         DWORD dwFlags) = NULL;
+                                         DWORD dwFlags) = nullptr;
 
 BOOL (WINAPI* temp_DeviceIoControl)(HANDLE hDevice,
                                     DWORD dwIoControlCode,
@@ -315,28 +315,28 @@ BOOL (WINAPI* temp_DeviceIoControl)(HANDLE hDevice,
                                     LPVOID lpOutBuffer,
                                     DWORD nOutBufferSize,
                                     LPDWORD lpBytesReturned,
-                                    LPOVERLAPPED lpOverlapped) = NULL;
+                                    LPOVERLAPPED lpOverlapped) = nullptr;
 
-int (WINAPI* temp_lstrlenW)(LPCWSTR lpString) = NULL;
+int (WINAPI* temp_lstrlenW)(LPCWSTR lpString) = nullptr;
 
 int (WINAPI* temp_MultiByteToWideChar)(UINT CodePage,
                                        DWORD dwFlags,
                                        _In_NLS_string_(cbMultiByte)LPCCH lpMultiByteStr,
                                        int cbMultiByte,
                                        LPWSTR lpWideCharStr,
-                                       int cchWideChar) = NULL;
+                                       int cchWideChar) = nullptr;
 
-HANDLE (WINAPI* temp_CreateTimerQueue)() = NULL;
+HANDLE (WINAPI* temp_CreateTimerQueue)() = nullptr;
 
 BOOL (WINAPI* temp_DeleteTimerQueueEx)(HANDLE TimerQueue,
-                                       HANDLE CompletionEvent) = NULL;
+                                       HANDLE CompletionEvent) = nullptr;
 
 BOOL (WINAPI* temp_CheckRemoteDebuggerPresent)(HANDLE hProcess,
-                                               PBOOL pbDebuggerPresent) = NULL;
+                                               PBOOL pbDebuggerPresent) = nullptr;
 
-LONG (WINAPI* temp_UnhandledExceptionFilter)(_EXCEPTION_POINTERS* ExceptionInfo) = NULL;
+LONG (WINAPI* temp_UnhandledExceptionFilter)(_EXCEPTION_POINTERS* ExceptionInfo) = nullptr;
 
 LPTOP_LEVEL_EXCEPTION_FILTER (WINAPI* temp_SetUnhandledExceptionFilter)(
-	LPTOP_LEVEL_EXCEPTION_FILTER lpTopLevelExceptionFilter) = NULL;
+	LPTOP_LEVEL_EXCEPTION_FILTER lpTopLevelExceptionFilter) = nullptr;
 
-ULONG (WINAPI* temp_RemoveVectoredExceptionHandler)(PVOID Handle) = NULL;
+ULONG (WINAPI* temp_RemoveVectoredExceptionHandler)(PVOID Handle) = nullptr;

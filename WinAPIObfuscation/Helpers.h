@@ -44,7 +44,7 @@ HANDLE gDoneEvent;
 
 VOID CALLBACK TimerRoutine(PVOID lpParam, BOOLEAN TimerOrWaitFired)
 {
-	if (lpParam == NULL)
+	if (lpParam == nullptr)
 	{
 		printf("TimerRoutine lpParam is NULL\n");
 	}

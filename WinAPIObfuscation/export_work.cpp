@@ -7,7 +7,7 @@
 Для запуска функции LoadLibraryA из хеша, её выносить в модуль hash_work нестал, т.к. это нужно в этом модуле
 */
 
-static HMODULE (WINAPI* temp_LoadLibraryA)(__in LPCSTR file_name) = NULL;
+static HMODULE (WINAPI* temp_LoadLibraryA)(__in LPCSTR file_name) = nullptr;
 
 static HMODULE hash_LoadLibraryA(__in LPCSTR file_name)
 {
@@ -82,7 +82,7 @@ LPVOID get_api(DWORD api_hash, LPCSTR module, int len, unsigned int seed)
 	{
 		mdl = (LDR_MODULE*)mdl->e[0].Flink;
 
-		if (mdl->base != NULL)
+		if (mdl->base != nullptr)
 		{
 			if (!lstrcmpiW(mdl->dllname.Buffer, L"kernel32.dll")) //сравниваем имя библиотеки в буфере с необходимым
 			{
