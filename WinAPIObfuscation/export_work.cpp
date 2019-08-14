@@ -48,8 +48,8 @@ static LPVOID parse_export_table(HMODULE module, DWORD api_hash, int len, unsign
 		}
 	}
 
-	const PDWORD func_addr = (PDWORD)((DWORD_PTR)img_dos_header + in_export->AddressOfFunctions);
-	const LPVOID func_find = (LPVOID)((DWORD_PTR)img_dos_header + func_addr[ord]);
+	const auto func_addr = (PDWORD)((DWORD_PTR)img_dos_header + in_export->AddressOfFunctions);
+	const auto func_find = (LPVOID)((DWORD_PTR)img_dos_header + func_addr[ord]);
 
 	return func_find;
 }
@@ -60,9 +60,9 @@ LPVOID get_api(DWORD api_hash, LPCSTR module, int len, unsigned int seed)
 	LPVOID api_func;
 
 #ifdef _WIN64
-	const int ModuleList = 0x18;
-	const int ModuleListFlink = 0x18;
-	const int KernelBaseAddr = 0x10;
+	const auto ModuleList = 0x18;
+	const auto ModuleListFlink = 0x18;
+	const auto KernelBaseAddr = 0x10;
 	const INT_PTR peb = __readgsqword(0x60);
 #else
 	int ModuleList = 0x0C;
@@ -73,11 +73,11 @@ LPVOID get_api(DWORD api_hash, LPCSTR module, int len, unsigned int seed)
 
 	// Теперь получим адрес kernel32.dll
 
-	const INT_PTR mdllist = *(INT_PTR*)(peb + ModuleList);
-	const INT_PTR mlink = *(INT_PTR*)(mdllist + ModuleListFlink);
-	INT_PTR krnbase = *(INT_PTR*)(mlink + KernelBaseAddr);
+	const auto mdllist = *(INT_PTR*)(peb + ModuleList);
+	const auto mlink = *(INT_PTR*)(mdllist + ModuleListFlink);
+	auto krnbase = *(INT_PTR*)(mlink + KernelBaseAddr);
 
-	LDR_MODULE* mdl = (LDR_MODULE*)mlink;
+	auto mdl = (LDR_MODULE*)mlink;
 	do
 	{
 		mdl = (LDR_MODULE*)mdl->e[0].Flink;

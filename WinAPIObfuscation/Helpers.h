@@ -16,7 +16,7 @@ DWORD WINAPI thread_function(LPVOID lpParameter)
 
 VOID CALLBACK apc_function_1(ULONG_PTR dwParam)
 {
-	C* obj = (C*)dwParam;
+	auto obj = (C*)dwParam;
 	obj->do_something();
 }
 
