@@ -39,7 +39,7 @@ static LPVOID parse_export_table(HMODULE module, DWORD api_hash, int len, unsign
 	{
 		api_name = (PCHAR)((DWORD_PTR)img_dos_header + rva_name[i]);
 
-		int get_hash = MurmurHash2A(api_name, len, seed);
+		const int get_hash = MurmurHash2A(api_name, len, seed);
 
 		if (api_hash == get_hash)
 		{
@@ -48,8 +48,8 @@ static LPVOID parse_export_table(HMODULE module, DWORD api_hash, int len, unsign
 		}
 	}
 
-	PDWORD func_addr = (PDWORD)((DWORD_PTR)img_dos_header + in_export->AddressOfFunctions);
-	LPVOID func_find = (LPVOID)((DWORD_PTR)img_dos_header + func_addr[ord]);
+	const PDWORD func_addr = (PDWORD)((DWORD_PTR)img_dos_header + in_export->AddressOfFunctions);
+	const LPVOID func_find = (LPVOID)((DWORD_PTR)img_dos_header + func_addr[ord]);
 
 	return func_find;
 }
@@ -60,10 +60,10 @@ LPVOID get_api(DWORD api_hash, LPCSTR module, int len, unsigned int seed)
 	LPVOID api_func;
 
 #ifdef _WIN64
-	int ModuleList = 0x18;
-	int ModuleListFlink = 0x18;
-	int KernelBaseAddr = 0x10;
-	INT_PTR peb = __readgsqword(0x60);
+	const int ModuleList = 0x18;
+	const int ModuleListFlink = 0x18;
+	const int KernelBaseAddr = 0x10;
+	const INT_PTR peb = __readgsqword(0x60);
 #else
 	int ModuleList = 0x0C;
 	int ModuleListFlink = 0x10;
@@ -73,8 +73,8 @@ LPVOID get_api(DWORD api_hash, LPCSTR module, int len, unsigned int seed)
 
 	// Теперь получим адрес kernel32.dll
 
-	INT_PTR mdllist = *(INT_PTR*)(peb + ModuleList);
-	INT_PTR mlink = *(INT_PTR*)(mdllist + ModuleListFlink);
+	const INT_PTR mdllist = *(INT_PTR*)(peb + ModuleList);
+	const INT_PTR mlink = *(INT_PTR*)(mdllist + ModuleListFlink);
 	INT_PTR krnbase = *(INT_PTR*)(mlink + KernelBaseAddr);
 
 	LDR_MODULE* mdl = (LDR_MODULE*)mlink;
@@ -95,7 +95,7 @@ LPVOID get_api(DWORD api_hash, LPCSTR module, int len, unsigned int seed)
 	krnl32 = (HMODULE)mdl->base;
 
 	//Получаем адрес функции LoadLibraryA
-	int api_hash_LoadLibraryA = MurmurHash2A("LoadLibraryA", 12, 10);
+	const int api_hash_LoadLibraryA = MurmurHash2A("LoadLibraryA", 12, 10);
 	temp_LoadLibraryA = (HMODULE(WINAPI*)(LPCSTR))parse_export_table(krnl32, api_hash_LoadLibraryA, 12, 10);
 	hDll = hash_LoadLibraryA(module);
 
