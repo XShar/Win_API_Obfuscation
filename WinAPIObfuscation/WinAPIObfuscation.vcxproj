@@ -162,6 +162,7 @@
     <ClInclude Include="C.h" />
     <ClInclude Include="export_work.h" />
     <ClInclude Include="hash_work.h" />
+    <ClInclude Include="Helpers.h" />
     <ClInclude Include="MurmurHash2A.h" />
     <ClInclude Include="PointerHashFunc.h" />
     <ClInclude Include="pch.h" />

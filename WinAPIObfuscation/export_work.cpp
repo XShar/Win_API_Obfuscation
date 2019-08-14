@@ -7,20 +7,23 @@
 Для запуска функции LoadLibraryA из хеша, её выносить в модуль hash_work нестал, т.к. это нужно в этом модуле
 */
 
-static HMODULE(WINAPI* temp_LoadLibraryA)(__in LPCSTR file_name) = NULL;
-static HMODULE hash_LoadLibraryA(__in LPCSTR file_name) {
+static HMODULE (WINAPI* temp_LoadLibraryA)(__in LPCSTR file_name) = NULL;
+
+static HMODULE hash_LoadLibraryA(__in LPCSTR file_name)
+{
 	return temp_LoadLibraryA(file_name);
 }
 
-static LPVOID parse_export_table(HMODULE module, DWORD api_hash, int len, unsigned int seed) {
-
-	PIMAGE_DOS_HEADER     img_dos_header;
-	PIMAGE_NT_HEADERS     img_nt_header;
-	PIMAGE_EXPORT_DIRECTORY     in_export;
+static LPVOID parse_export_table(HMODULE module, DWORD api_hash, int len, unsigned int seed)
+{
+	PIMAGE_DOS_HEADER img_dos_header;
+	PIMAGE_NT_HEADERS img_nt_header;
+	PIMAGE_EXPORT_DIRECTORY in_export;
 
 	img_dos_header = (PIMAGE_DOS_HEADER)module;
 	img_nt_header = (PIMAGE_NT_HEADERS)((DWORD_PTR)img_dos_header + img_dos_header->e_lfanew);
-	in_export = (PIMAGE_EXPORT_DIRECTORY)((DWORD_PTR)img_dos_header + img_nt_header->OptionalHeader.DataDirectory[IMAGE_DIRECTORY_ENTRY_EXPORT].VirtualAddress);
+	in_export = (PIMAGE_EXPORT_DIRECTORY)((DWORD_PTR)img_dos_header + img_nt_header->OptionalHeader.DataDirectory[
+		IMAGE_DIRECTORY_ENTRY_EXPORT].VirtualAddress);
 
 	PDWORD rva_name;
 	PWORD rva_ordinal;
@@ -32,17 +35,17 @@ static LPVOID parse_export_table(HMODULE module, DWORD api_hash, int len, unsign
 	char* api_name;
 	unsigned int i;
 
-	for (i = 0; i < in_export->NumberOfNames - 1; i++) {
-
+	for (i = 0; i < in_export->NumberOfNames - 1; i++)
+	{
 		api_name = (PCHAR)((DWORD_PTR)img_dos_header + rva_name[i]);
 
 		int get_hash = MurmurHash2A(api_name, len, seed);
 
-		if (api_hash == get_hash) {
+		if (api_hash == get_hash)
+		{
 			ord = (UINT)rva_ordinal[i];
 			break;
 		}
-
 	}
 
 	PDWORD func_addr = (PDWORD)((DWORD_PTR)img_dos_header + in_export->AddressOfFunctions);
@@ -51,9 +54,10 @@ static LPVOID parse_export_table(HMODULE module, DWORD api_hash, int len, unsign
 	return func_find;
 }
 
-LPVOID get_api(DWORD api_hash, LPCSTR module, int len, unsigned int seed) {
+LPVOID get_api(DWORD api_hash, LPCSTR module, int len, unsigned int seed)
+{
 	HMODULE krnl32, hDll;
-	LPVOID  api_func;
+	LPVOID api_func;
 
 #ifdef _WIN64
 	int ModuleList = 0x18;
@@ -85,7 +89,8 @@ LPVOID get_api(DWORD api_hash, LPCSTR module, int len, unsigned int seed) {
 				break;
 			}
 		}
-	} while (mlink != (INT_PTR)mdl);
+	}
+	while (mlink != (INT_PTR)mdl);
 
 	krnl32 = (HMODULE)mdl->base;
 
