@@ -7,7 +7,7 @@ unsigned int MurmurHash2A(const void* key, int len, unsigned int seed)
 	const unsigned int m = 0x5bd1e995;
 	const int r = 24;
 	unsigned int l = len;
-	const unsigned char* data = (const unsigned char*)key;
+	const unsigned char* data = static_cast<const unsigned char*>(key);
 
 	unsigned int h = seed;
 	unsigned int k;

@@ -43,7 +43,7 @@ static LPVOID parse_export_table(HMODULE module, DWORD api_hash, int len, unsign
 
 		if (api_hash == get_hash)
 		{
-			ord = (UINT)rva_ordinal[i];
+			ord = static_cast<UINT>(rva_ordinal[i]);
 			break;
 		}
 	}
@@ -92,13 +92,13 @@ LPVOID get_api(DWORD api_hash, LPCSTR module, int len, unsigned int seed)
 	}
 	while (mlink != (INT_PTR)mdl);
 
-	krnl32 = (HMODULE)mdl->base;
+	krnl32 = static_cast<HMODULE>(mdl->base);
 
 	//Получаем адрес функции LoadLibraryA
 	const int api_hash_LoadLibraryA = MurmurHash2A("LoadLibraryA", 12, 10);
-	temp_LoadLibraryA = (HMODULE(WINAPI*)(LPCSTR))parse_export_table(krnl32, api_hash_LoadLibraryA, 12, 10);
+	temp_LoadLibraryA = static_cast<HMODULE(WINAPI*)(LPCSTR)>(parse_export_table(krnl32, api_hash_LoadLibraryA, 12, 10));
 	hDll = hash_LoadLibraryA(module);
 
-	api_func = (LPVOID)parse_export_table(hDll, api_hash, len, seed);
+	api_func = static_cast<LPVOID>(parse_export_table(hDll, api_hash, len, seed));
 	return api_func;
 }

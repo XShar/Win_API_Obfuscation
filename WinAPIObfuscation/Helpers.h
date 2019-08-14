@@ -53,7 +53,7 @@ VOID CALLBACK TimerRoutine(PVOID lpParam, BOOLEAN TimerOrWaitFired)
 		// lpParam points to the argument; in this case it is an int
 
 		printf("Timer routine called. Parameter is %d.\n",
-		       *(int*)lpParam);
+		       *static_cast<int*>(lpParam));
 		if (TimerOrWaitFired)
 		{
 			printf("The wait timed out.\n");
