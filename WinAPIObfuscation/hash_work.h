@@ -4,6 +4,7 @@
 */
 #include <windows.h>
 #include <TlHelp32.h>
+#include <winnt.h>
 HANDLE hash_CreateFileA(__in LPCSTR file_name, __in DWORD access, __in DWORD share_mode, __in LPSECURITY_ATTRIBUTES security, __in DWORD creation_disposition, __in DWORD flags, __in HANDLE template_file);
 BOOL hash_VirtualProtect(LPVOID lpAddress, SIZE_T dwSize, DWORD flNewProtect, PDWORD lpflOldProtect);
 LPVOID hash_VirtualAlloc(LPVOID lpAddress, SIZE_T dwSize, DWORD flAllocationType, DWORD flProtect);
@@ -90,3 +91,7 @@ BOOL hash_DeviceIoControl(HANDLE hDevice, DWORD dwIoControlCode, LPVOID lpInBuff
 int hash_lstrlenW(LPCWSTR lpString);
 int hash_MultiByteToWideChar(UINT CodePage, DWORD dwFlags, _In_NLS_string_(cbMultiByte)LPCCH lpMultiByteStr, int cbMultiByte, LPWSTR lpWideCharStr, int cchWideChar);
 BOOL hash_DeleteTimerQueueEx(HANDLE TimerQueue, HANDLE CompletionEvent);
+BOOL hash_CheckRemoteDebuggerPresent(HANDLE hProcess, PBOOL pbDebuggerPresent);
+LONG hash_UnhandledExceptionFilter(_EXCEPTION_POINTERS* ExceptionInfo);
+LPTOP_LEVEL_EXCEPTION_FILTER hash_SetUnhandledExceptionFilter(LPTOP_LEVEL_EXCEPTION_FILTER lpTopLevelExceptionFilter);
+ULONG hash_RemoveVectoredExceptionHandler(PVOID Handle);

@@ -5,6 +5,7 @@
 #include "Windows.h"
 #include "errhandlingapi.h"
 #include <TlHelp32.h>
+#include <winnt.h>
 
 HANDLE hash_CreateFileA(
 	__in    LPCSTR      file_name,
@@ -347,7 +348,9 @@ BOOL hash_IsProcessorFeaturePresent(DWORD ProcessorFeature) {
 
 	return temp_IsProcessorFeaturePresent( ProcessorFeature);
 }
-PVOID hash_AddVectoredExceptionHandler(ULONG                       First,
+
+//TODO: needed fix
+PVOID hash_AddVectoredExceptionHandler(ULONG First,
 	PVECTORED_EXCEPTION_HANDLER Handler) {
 
 	int lenSeed = 28;
@@ -1197,4 +1200,43 @@ BOOL hash_DeleteTimerQueueEx(HANDLE TimerQueue,
 		HANDLE ))get_api(_hash, "kernel32.dll", lenSeed, lenSeed);
 
 	return temp_DeleteTimerQueueEx(TimerQueue,CompletionEvent);
+}
+
+BOOL hash_CheckRemoteDebuggerPresent(HANDLE hProcess,
+	PBOOL  pbDebuggerPresent) {
+	int lenSeed = 27;
+	unsigned int _hash = MurmurHash2A("CheckRemoteDebuggerPresent", lenSeed, lenSeed);
+
+	temp_CheckRemoteDebuggerPresent = (BOOL(WINAPI*)(HANDLE ,
+		PBOOL  ))get_api(_hash, "kernel32.dll", lenSeed, lenSeed);
+
+	return temp_CheckRemoteDebuggerPresent( hProcess,
+		  pbDebuggerPresent);
+}
+
+LONG hash_UnhandledExceptionFilter(_EXCEPTION_POINTERS *ExceptionInfo) {
+	int lenSeed = 25;
+	unsigned int _hash = MurmurHash2A("UnhandledExceptionFilter", lenSeed, lenSeed);
+
+	temp_UnhandledExceptionFilter = (LONG(WINAPI*)(_EXCEPTION_POINTERS *))get_api(_hash, "kernel32.dll", lenSeed, lenSeed);
+
+	return temp_UnhandledExceptionFilter(ExceptionInfo);
+}
+
+LPTOP_LEVEL_EXCEPTION_FILTER hash_SetUnhandledExceptionFilter(LPTOP_LEVEL_EXCEPTION_FILTER lpTopLevelExceptionFilter) {
+	int lenSeed = 28;
+	unsigned int _hash = MurmurHash2A("SetUnhandledExceptionFilter", lenSeed, lenSeed);
+
+	temp_SetUnhandledExceptionFilter = (LPTOP_LEVEL_EXCEPTION_FILTER(WINAPI*)(LPTOP_LEVEL_EXCEPTION_FILTER))get_api(_hash, "kernel32.dll", lenSeed, lenSeed);
+
+	return temp_SetUnhandledExceptionFilter(lpTopLevelExceptionFilter);
+}
+
+ULONG hash_RemoveVectoredExceptionHandler(PVOID Handle) {
+	int lenSeed = 31;
+	unsigned int _hash = MurmurHash2A("RemoveVectoredExceptionHandler", lenSeed, lenSeed);
+
+	temp_RemoveVectoredExceptionHandler = (ULONG(WINAPI*)(PVOID))get_api(_hash, "kernel32.dll", lenSeed, lenSeed);
+
+	return temp_RemoveVectoredExceptionHandler(Handle);
 }

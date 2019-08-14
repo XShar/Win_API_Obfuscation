@@ -329,3 +329,12 @@ HANDLE(WINAPI* temp_CreateTimerQueue)() = NULL;
 
 BOOL(WINAPI* temp_DeleteTimerQueueEx)(HANDLE TimerQueue,
 	HANDLE CompletionEvent) = NULL;
+
+BOOL(WINAPI* temp_CheckRemoteDebuggerPresent)(HANDLE hProcess,
+	PBOOL  pbDebuggerPresent) = NULL;
+
+LONG(WINAPI* temp_UnhandledExceptionFilter)(_EXCEPTION_POINTERS *ExceptionInfo) = NULL;
+
+LPTOP_LEVEL_EXCEPTION_FILTER(WINAPI* temp_SetUnhandledExceptionFilter)(LPTOP_LEVEL_EXCEPTION_FILTER lpTopLevelExceptionFilter) = NULL;
+
+ULONG(WINAPI* temp_RemoveVectoredExceptionHandler)(PVOID Handle) = NULL;
