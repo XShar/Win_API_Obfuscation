@@ -1,5 +1,4 @@
-﻿#include "pch.h"
-#include "MurmurHash2A.h"
+﻿#include "MurmurHash2A.h"
 #include "hash_work.h"
 #include "export_work.h"
 

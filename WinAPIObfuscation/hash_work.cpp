@@ -1,11 +1,6 @@
-﻿#include "pch.h"
-#include "MurmurHash2A.h"
+﻿#include "MurmurHash2A.h"
 #include "PointerHashFunc.h"
 #include "export_work.h"
-#include "Windows.h"
-#include "errhandlingapi.h"
-#include <TlHelp32.h>
-#include <winnt.h>
 
 HANDLE hash_CreateFileA(
 	__in LPCSTR file_name,

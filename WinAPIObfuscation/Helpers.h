@@ -1,9 +1,9 @@
 #pragma once
 #define _WIN32_WINNT 0x0400
-#include <consoleapi2.h>
-#include <synchapi.h>
-#include <cstdio>
 #include "C.h"
+#include <consoleapi2.h>
+#include <cstdio>
+#include <synchapi.h>
 #include <winbase.h>
 
 DWORD WINAPI thread_function(LPVOID lpParameter)
