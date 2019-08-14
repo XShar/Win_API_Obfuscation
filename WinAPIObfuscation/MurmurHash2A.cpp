@@ -1,14 +1,15 @@
-﻿#include "pch.h"
-#include "MurmurHash2A.h"
+﻿#include "MurmurHash2A.h"
+
 #define mmix(h,k) { k *= m; k ^= k >> r; k *= m; h *= m; h ^= k; }
-unsigned int MurmurHash2A(const void * key, int len, unsigned int seed)
+
+unsigned int MurmurHash2A(const void* key, int len, unsigned int seed)
 {
 	const unsigned int m = 0x5bd1e995;
-	const int r = 24;
+	const auto r = 24;
 	unsigned int l = len;
-	const unsigned char * data = (const unsigned char *)key;
+	auto data = static_cast<const unsigned char*>(key);
 
-	unsigned int h = seed;
+	auto h = seed;
 	unsigned int k;
 
 	while (len >= 4)

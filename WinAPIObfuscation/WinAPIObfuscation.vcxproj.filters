@@ -15,9 +15,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="pch.h">
-      <Filter>Файлы заголовков</Filter>
-    </ClInclude>
     <ClInclude Include="hash_work.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
@@ -30,11 +27,14 @@
     <ClInclude Include="PointerHashFunc.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
+    <ClInclude Include="C.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="Helpers.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="pch.cpp">
-      <Filter>Исходные файлы</Filter>
-    </ClCompile>
     <ClCompile Include="WinAPIObfuscation.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
